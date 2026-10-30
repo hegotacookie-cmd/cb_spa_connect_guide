@@ -1,0 +1,2303 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장애학생선수를 육성하는 특수 교사가 알아야 할 학교 체육 길잡이</title>
+    <style>
+        :root {
+            --primary-color: #2b6cb0;
+            --primary-light: #ebf8ff;
+            --primary-dark: #2c5282;
+            --accent-color: #319795;
+            --accent-light: #e6fffa;
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
+            --text-color: #2d3748;
+            --text-muted: #718096;
+            --border-color: #e2e8f0;
+            --danger-color: #e53e3e;
+            --danger-light: #fff5f5;
+            --success-color: #38a169;
+            --warning-color: #d69e2e;
+            --purple-color: #805ad5;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 2.5rem 1rem 2rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.9rem;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 1.05rem;
+        }
+
+        .main-nav {
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            border-bottom: 2px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            padding: 1rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover { color: var(--primary-color); }
+        .nav-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            background-color: var(--primary-light);
+        }
+
+        .container {
+            max-width: 1040px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .sub-nav {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .sub-nav-btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: white;
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #4a5568;
+            transition: all 0.2s;
+        }
+
+        .sub-nav-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
+        .sub-nav-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .sub-tab-content { display: none; }
+        .sub-tab-content.active { display: block; }
+
+        .region-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .region-btn {
+            padding: 0.55rem 0.2rem;
+            border: 1px solid var(--border-color);
+            background: white;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            color: #4a5568;
+            transition: all 0.2s;
+        }
+
+        .region-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
+        .region-btn.active {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+            box-shadow: 0 2px 4px rgba(49, 151, 149, 0.25);
+        }
+
+        .detail-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            margin-top: 1rem;
+        }
+
+        .infra-badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-right: 0.4rem;
+        }
+
+        .badge-center { background: #feebc8; color: #c05621; }
+        .badge-bandabi { background: #c6f6d5; color: #22543d; }
+        .badge-fitness { background: #bee3f8; color: #2b6cb0; }
+        .badge-disability-fit { background: #fed7e2; color: #97266d; }
+
+        .search-section {
+            background: var(--card-bg);
+            padding: 1.8rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.8rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            font-size: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-box input:focus { border-color: var(--primary-color); }
+
+        .search-helper-text {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            margin-top: 0.4rem;
+            display: block;
+        }
+
+        /* 변경된 검색어 하이라이트 스타일: 오직 빨간 글씨 (박스, 테두리 없음) */
+        .search-highlight {
+            color: #e53e3e !important;
+            font-weight: 800 !important;
+            background-color: transparent !important;
+            padding: 0 !important;
+            border: none !important;
+        }
+
+        .filter-group { margin-top: 1.4rem; }
+        .filter-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag-btn {
+            padding: 0.45rem 1rem;
+            border: 1px solid var(--border-color);
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            color: #4a5568;
+            transition: all 0.2s;
+        }
+
+        .tag-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
+        .tag-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .filters-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.2rem;
+        }
+
+        select.filter-select {
+            width: 100%;
+            padding: 0.65rem 0.8rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: white;
+            font-size: 0.92rem;
+            color: var(--text-color);
+            outline: none;
+        }
+
+        select.filter-select:focus { border-color: var(--primary-color); }
+
+        .controls-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            padding: 0 0.2rem;
+        }
+
+        .results-count {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .sort-buttons button {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 0.45rem 0.9rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-left: 0.4rem;
+            font-size: 0.88rem;
+            transition: all 0.2s;
+        }
+
+        .sort-buttons button.active {
+            background: var(--primary-light);
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            overflow: hidden;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            border-color: #cbd5e0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .card-header {
+            padding: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            user-select: none;
+        }
+
+        .card-header:hover { background: #fafafa; }
+
+        .card-title-area {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .badge-wrap {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .badge-category {
+            background: var(--primary-light);
+            color: var(--primary-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .badge-timing {
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin: 0;
+            letter-spacing: -0.3px;
+        }
+
+        .card-summary {
+            font-size: 0.94rem;
+            color: #4a5568;
+            margin: 0.2rem 0 0 0;
+        }
+
+        .toggle-icon {
+            font-size: 1.1rem;
+            color: #a0aec0;
+            transition: transform 0.25s ease;
+            margin-left: 1rem;
+        }
+
+        .card.open .toggle-icon {
+            transform: rotate(180deg);
+            color: var(--primary-color);
+        }
+
+        .card-body {
+            display: none;
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            background: #ffffff;
+        }
+
+        .card.open .card-body { display: block; }
+
+        .section-box {
+            margin-bottom: 1.3rem;
+            padding: 1.1rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .section-box h4 {
+            margin: 0 0 0.6rem 0;
+            color: var(--primary-color);
+            font-size: 0.98rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .section-box p {
+            margin: 0 0 0.5rem 0;
+            font-size: 0.94rem;
+        }
+
+        .section-box ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            font-size: 0.93rem;
+        }
+
+        .section-box li { margin-bottom: 0.3rem; }
+
+        .flow-meta {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+            font-size: 0.88rem;
+        }
+
+        .flow-meta span {
+            background: #edf2f7;
+            padding: 0.3rem 0.65rem;
+            border-radius: 4px;
+            color: #2d3748;
+        }
+
+        .view-mode-btns {
+            margin-bottom: 0.8rem;
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .view-mode-btns button {
+            padding: 0.35rem 0.75rem;
+            font-size: 0.82rem;
+            border: 1px solid var(--border-color);
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .view-mode-btns button.active {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .flow-container.horizontal {
+            flex-direction: row;
+            overflow-x: auto;
+            padding-bottom: 1.2rem;
+        }
+
+        .flow-step-node {
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.85rem;
+            background: #f8fafc;
+            position: relative;
+            transition: all 0.25s ease;
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .flow-step-node.current-step {
+            border-color: #e53e3e;
+            background: #fffaf0;
+            box-shadow: 0 0 0 2px rgba(229, 62, 62, 0.2);
+        }
+
+        .current-step-badge {
+            display: inline-block;
+            background: #e53e3e;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 0.15rem 0.5rem;
+            border-radius: 12px;
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.3px;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.4rem;
+        }
+
+        .step-num-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #2d3748;
+        }
+
+        .step-role-badge {
+            font-size: 0.78rem;
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 0.15rem 0.45rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .step-desc {
+            font-size: 0.88rem;
+            color: #4a5568;
+            margin: 0.3rem 0;
+            line-height: 1.45;
+        }
+
+        .step-check-label {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #4a5568;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            padding-top: 0.4rem;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .step-check-label input {
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+        }
+
+        .flow-step-node.completed {
+            background: #edf2f7;
+            border-color: #cbd5e0;
+            opacity: 0.65;
+        }
+
+        .flow-step-node.completed .step-num-title,
+        .flow-step-node.completed .step-desc,
+        .flow-step-node.completed .step-role-badge {
+            text-decoration: line-through;
+            color: #718096;
+        }
+
+        .next-action-box {
+            margin-top: 0.8rem;
+            padding: 0.75rem 1rem;
+            background: #e6fffa;
+            border-left: 4px solid var(--accent-color);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #234e52;
+            font-weight: 600;
+        }
+
+        .table-mistake {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.5rem;
+            background: white;
+        }
+
+        .table-mistake th, .table-mistake td {
+            border: 1px solid var(--border-color);
+            padding: 0.65rem 0.8rem;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .table-mistake th {
+            background: var(--danger-light);
+            color: var(--danger-color);
+            font-weight: 700;
+        }
+
+        .faq-item {
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            background: white;
+            overflow: hidden;
+        }
+
+        .faq-q {
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.92rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-q:hover { background: #f7fafc; }
+
+        .faq-a {
+            display: none;
+            padding: 0.8rem 1rem;
+            background: #f8fafc;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.91rem;
+            color: #4a5568;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .download-btn:hover { background: #234e52; }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .info-table th, .info-table td {
+            border: 1px solid var(--border-color);
+            padding: 0.85rem 1rem;
+            text-align: left;
+            font-size: 0.92rem;
+        }
+
+        .info-table th {
+            background: var(--primary-light);
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .info-table tr:hover { background: #f8fafc; }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 3.5rem;
+            background: white;
+            line-height: 1.8;
+        }
+
+        footer p { margin: 0.2rem 0; }
+
+        .footer-org {
+            margin-top: 1.2rem !important;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 640px) {
+            .filters-row { grid-template-columns: 1fr; }
+            .nav-btn { padding: 0.9rem 1rem; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>특수 교사가 꼭 알아야 할 학교 체육 길잡이</h1>
+        <p>현장 맞춤형 체육 행정·규정, 체육 인프라 및 장애인 실업팀 통합 안내</p>
+    </header>
+
+    <nav class="main-nav">
+        <button class="nav-btn active" onclick="switchMainTab('guide', this)">📌 체육 행정·규정 가이드</button>
+        <button class="nav-btn" onclick="switchMainTab('infra', this)">🏟️ 체육 인프라 현황</button>
+        <button class="nav-btn" onclick="switchMainTab('team', this)">🏢 장애인 실업팀 및 직장운동경기부 현황</button>
+    </nav>
+
+    <div class="container">
+        <!-- ================= [탭 1: 체육 행정·규정 가이드] ================= -->
+        <div id="tab-guide" class="tab-content active">
+            <div class="search-section">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="궁금한 내용(예: 학생선수 등록, 출석인정, 예산 지원, 도핑 등)을 입력하세요..." oninput="filterData()">
+                    <span class="search-helper-text">💡 검색한 단어 및 겹치는 유사 키워드는 결과 화면에 <span style="color:#e53e3e; font-weight:bold;">빨간 글씨</span>로 강조 표시됩니다.</span>
+                </div>
+
+                <div class="filter-group">
+                    <label>이럴 때 (핵심 키워드)</label>
+                    <div class="tags-container" id="keywordTags">
+                        <button class="tag-btn active" onclick="selectKeyword('전체')">전체</button>
+                        <button class="tag-btn" onclick="selectKeyword('출석인정결석')">출석인정결석</button>
+                        <button class="tag-btn" onclick="selectKeyword('최저학력제')">최저학력제</button>
+                        <button class="tag-btn" onclick="selectKeyword('나이스관리')">나이스관리</button>
+                        <button class="tag-btn" onclick="selectKeyword('개인선수관리')">개인선수관리</button>
+                        <button class="tag-btn" onclick="selectKeyword('인권및안전')">인권 및 안전</button>
+                        <button class="tag-btn" onclick="selectKeyword('PAPS')">PAPS 체력평가</button>
+                    </div>
+                </div>
+
+                <div class="filters-row">
+                    <div class="filter-group" style="margin-top:0;">
+                        <label for="categorySelect">분류 선택</label>
+                        <select id="categorySelect" class="filter-select" onchange="filterData()">
+                            <option value="전체">전체 분류 (장애학생 규정 전체)</option>
+                            <option value="학생선수 출결">학생선수 출결</option>
+                            <option value="학생선수 출결 및 학력·보충학습 관리">학생선수 출결 및 학력·보충학습 관리</option>
+                            <option value="최저학력제 (특수교육 예외)">최저학력제 (특수교육 예외)</option>
+                            <option value="학습권 보장">학습권 보장</option>
+                            <option value="나이스 관리">나이스 관리</option>
+                            <option value="개인선수 관리">개인선수 관리</option>
+                            <option value="인권 및 안전">인권 및 안전</option>
+                            <option value="안전 관리">안전 관리</option>
+                            <option value="체력평가">체력평가</option>
+                            <option value="학교운동부 운영">학교운동부 운영</option>
+                        </select>
+                    </div>
+                    <div class="filter-group" style="margin-top:0;">
+                        <label for="timingSelect">신청 시점</label>
+                        <select id="timingSelect" class="filter-select" onchange="filterData()">
+                            <option value="전체">전체 시점</option>
+                            <option value="대회 전">대회 전</option>
+                            <option value="대회 중">대회 중</option>
+                            <option value="대회 후">대회 후</option>
+                            <option value="상시">상시 (학기 중/연중)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls-bar">
+                <div class="results-count" id="resultsCount">검색 결과: 0건</div>
+                <div class="sort-buttons">
+                    <button id="sortBasic" class="active" onclick="setSort('basic')">기본 순</button>
+                    <button id="sortAlpha" onclick="setSort('alpha')">가나다 순</button>
+                </div>
+            </div>
+
+            <div id="resultsContainer"></div>
+        </div>
+
+        <!-- ================= [탭 2: 체육 인프라 현황] ================= -->
+        <div id="tab-infra" class="tab-content">
+            <div class="sub-nav">
+                <button class="sub-nav-btn active" onclick="switchSubTab('infra', 'cb', this)">📍 충청북도 현황</button>
+                <button class="sub-nav-btn" onclick="switchSubTab('infra', 'nation', this)">🌐 전국 시도별 장애학생 체육 인프라 탭</button>
+            </div>
+
+            <div id="sub-infra-cb" class="sub-tab-content active">
+                <div class="search-section">
+                    <h3 style="margin: 0 0 0.5rem 0; color: var(--primary-color);">충청북도 시·군별 장애인 체육 인프라 및 체력인증센터 현황</h3>
+                    <p style="margin: 0 0 1.2rem 0; color: #4a5568; font-size: 0.93rem;">지역을 선택하면 <strong>[1. 관할 체육회] ➔ [2. 체육회에서 하는 일] ➔ [3. 장애인체력인증센터 및 국민체력100] ➔ [4. 활용 가능 공공체육시설]</strong> 순서로 안내됩니다.</p>
+
+                    <div class="region-grid" id="regionBtnGrid">
+                        <button class="region-btn active" onclick="loadRegionData('청주시', this)">청주시</button>
+                        <button class="region-btn" onclick="loadRegionData('충주시', this)">충주시</button>
+                        <button class="region-btn" onclick="loadRegionData('제천시', this)">제천시</button>
+                        <button class="region-btn" onclick="loadRegionData('보은군', this)">보은군</button>
+                        <button class="region-btn" onclick="loadRegionData('옥천군', this)">옥천군</button>
+                        <button class="region-btn" onclick="loadRegionData('영동군', this)">영동군</button>
+                        <button class="region-btn" onclick="loadRegionData('증평군', this)">증평군</button>
+                        <button class="region-btn" onclick="loadRegionData('진천군', this)">진천군</button>
+                        <button class="region-btn" onclick="loadRegionData('괴산군', this)">괴산군</button>
+                        <button class="region-btn" onclick="loadRegionData('음성군', this)">음성군</button>
+                        <button class="region-btn" onclick="loadRegionData('단양군', this)">단양군</button>
+                    </div>
+
+                    <div id="regionDetailContainer"></div>
+                </div>
+            </div>
+
+            <div id="sub-infra-nation" class="sub-tab-content">
+                <div class="search-section">
+                    <h3 style="margin: 0 0 0.5rem 0; color: var(--primary-color);">전국 시·도별 장애인체육회 및 체육 인프라 현황</h3>
+                    <p style="margin: 0 0 1.2rem 0; color: #4a5568; font-size: 0.94rem;">시·도를 선택하면 관할 체육회 정보, 체육회에서 하는 일, 체력인증센터 및 공공체육시설을 확인할 수 있습니다.</p>
+
+                    <div class="region-grid" id="nationBtnGrid">
+                        <button class="region-btn active" onclick="loadNationData('서울특별시', this)">서울특별시</button>
+                        <button class="region-btn" onclick="loadNationData('인천광역시', this)">인천광역시</button>
+                        <button class="region-btn" onclick="loadNationData('경기도', this)">경기도</button>
+                        <button class="region-btn" onclick="loadNationData('세종특별자치시', this)">세종시</button>
+                        <button class="region-btn" onclick="loadNationData('충청남도', this)">충청남도</button>
+                        <button class="region-btn" onclick="loadNationData('대구광역시', this)">대구광역시</button>
+                    </div>
+
+                    <div id="nationDetailContainer"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= [탭 3: 장애인 실업팀 및 직장운동경기부 현황] ================= -->
+        <div id="tab-team" class="tab-content">
+            <div class="sub-nav">
+                <button class="sub-nav-btn active" onclick="switchSubTab('team', 'cb', this)">📍 충청북도 현황</button>
+                <button class="sub-nav-btn" onclick="switchSubTab('team', 'nation', this)">🌐 전국 탭</button>
+            </div>
+
+            <div id="sub-team-cb" class="sub-tab-content active">
+                <div class="search-section">
+                    <h3 style="margin: 0 0 0.5rem 0; color: var(--primary-color);">2026년 충청북도 장애인 실업팀 및 직장운동경기부(취업선수) 현황</h3>
+                    <p style="margin: 0 0 1.2rem 0; color: #4a5568; font-size: 0.94rem;">원하시는 소속 구분을 선택하여 충북 직속 실업팀 또는 민간 기업의 취업 연계 현황을 확인하세요.</p>
+
+                    <div style="display:flex; gap:0.5rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--primary-light); padding-bottom: 0.8rem;">
+                        <button class="sub-nav-btn active" id="btn-official" onclick="toggleTeamType('official')" style="border-radius:4px;">충청북도장애인체육회 실업팀</button>
+                        <button class="sub-nav-btn" id="btn-company" onclick="toggleTeamType('company')" style="border-radius:4px;">충북 도내 기업 직장운동경기부(취업선수) 지역별 현황</button>
+                    </div>
+
+                    <div id="section-official">
+                        <h4 style="margin: 0 0 0.5rem 0; color: var(--primary-dark);">🏆 충청북도장애인체육회 직할 실업팀 (4개 종목 분리 현황)</h4>
+                        <table class="info-table" style="margin-top:0.3rem;">
+                            <thead>
+                                <tr>
+                                    <th style="width: 12%;">종목</th>
+                                    <th style="width: 12%;">창단일자</th>
+                                    <th style="width: 22%;">지도자 / 선수 구성</th>
+                                    <th style="width: 24%;">훈련 거점 및 주소·연락처</th>
+                                    <th style="width: 30%;">운영 특징 및 학생선수 연계</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>육상팀</strong></td>
+                                    <td>2023-01-01</td>
+                                    <td><strong>지도자 1명 (민수경 감독)<br>선수 4명 (트랙 2, 필드 2)</strong></td>
+                                    <td>청주시 서원구 사직대로 229 충북체육회관 1층<br>☎ 043-267-8971</td>
+                                    <td>엘리트 육상팀. 고교 졸업 우수 학생선수 최우선 선발. 트랙/필드 전담 분리 훈련, 국가대표 선발 지원.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>역도팀</strong></td>
+                                    <td>2013-05-07</td>
+                                    <td><strong>지도자 1명<br>선수 8명</strong> (총 9명)</td>
+                                    <td>청주시 청원구 사천로18번길 73 청주시장애인스포츠센터 역도장<br>☎ 043-267-8972</td>
+                                    <td>전국장애인체전 한국신기록 다수 수립, 웨이트리프팅·파워리프팅 전용 훈련장 완비. 충남·충북 권역 특수학교 졸업 선수 영입 연계.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>수영팀</strong></td>
+                                    <td>2012-02-08</td>
+                                    <td><strong>지도자 1명<br>선수 6명</strong> (총 7명)</td>
+                                    <td>청주시 서원구 사직대로 229 청주실내수영장 / 음성 반다비센터 수영장<br>☎ 043-267-8973</td>
+                                    <td>전국장애인체전 금메달 다수 획득(이주은·박상민 등 메달리스트 보유). 전문 영법 지도 및 전국학생체전 입상자 우선 트라이아웃 연계.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>탁구팀</strong></td>
+                                    <td>2017-01-01</td>
+                                    <td><strong>지도자 1명<br>선수 4명</strong> (총 5명)</td>
+                                    <td>청주시 청원구 사천로18번길 73 청주시장애인스포츠센터 탁구장<br>☎ 043-267-8974</td>
+                                    <td>전국장애인체전 단식 금메달 획득(박홍규·김형권 등). 휠체어 및 입식 맞춤형 엘리트 기술 지도, 청소년 클럽 멘토링.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="section-company" style="display: none;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: var(--primary-dark);">🏢 충북 도내 기업 직장운동경기부(취업선수) 지역별 현황</h4>
+                        <div class="region-grid" id="teamRegionBtnGrid">
+                            <button class="region-btn active" onclick="loadTeamRegionData('전체', this)">전체</button>
+                            <button class="region-btn" onclick="loadTeamRegionData('청주시', this)">청주시</button>
+                            <button class="region-btn" onclick="loadTeamRegionData('충주시', this)">충주시</button>
+                            <button class="region-btn" onclick="loadTeamRegionData('진천군', this)">진천군</button>
+                            <button class="region-btn" onclick="loadTeamRegionData('음성군', this)">음성군</button>
+                            <button class="region-btn" onclick="loadTeamRegionData('증평군', this)">증평군</button>
+                            <button class="region-btn" onclick="loadTeamRegionData('옥천군', this)">옥천군</button>
+                        </div>
+                        <div id="teamDetailContainer"></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="sub-team-nation" class="sub-tab-content">
+                <div class="search-section">
+                    <h3 style="margin: 0 0 0.5rem 0; color: var(--primary-color);">전국 시·도 실업팀 및 대기업 체육선수 고용 모델</h3>
+                    <p style="margin: 0 0 1.2rem 0; color: #4a5568; font-size: 0.94rem;">전국 단위 지자체 실업팀 표준 구조와 대기업 장애인 의무고용 연계 스포츠단 운영 모델입니다.</p>
+
+                    <table class="info-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 20%;">구분 및 모델</th>
+                                <th style="width: 40%;">운영 형태 및 세부 지원 방식</th>
+                                <th style="width: 40%;">특수교육 현장 진로 연계 시사점</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>지자체·공공기관<br>실업팀</strong></td>
+                                <td>• 광역 시·도 장애인체육회 직장운동경기부 운영<br>• 주요 종목: 육상, 수영, 역도, 탁구, 론볼, 사격 등<br>• 공공체육시설 상시 이용 및 전문 지도자 배치</td>
+                                <td>• 전국학생체전 입상자 우선 추천 및 특별 채용<br>• 전문체육인으로서 안정적인 사회적 신분 보장<br>• 퇴직 후 지도자 전환 트랙 연계</td>
+                            </tr>
+                            <tr>
+                                <td><strong>민간 대기업<br>체육선수 연계 고용</strong></td>
+                                <td>• 대기업 장애인 의무고용률 연계 선수단 운영 (SK, 포스코, 에코프로 등)<br>• 한국장애인고용공단 및 시도 체육회 중개 매칭<br>• 전문 훈련 기관 위탁 훈련 및 급여 전액 지원</td>
+                                <td>• 학교-공단-기업 간 3자 맞춤형 취업 협약 체결<br>• 운동 능력을 곧 직무 능력으로 인정받는 진로 개척<br>• 기업 복리후생 혜택 동일 적용</td>
+                            </tr>
+                            <tr>
+                                <td><strong>교육청-체육회<br>취업 매칭 프로토콜</strong></td>
+                                <td>• 특수교육원 및 특수체육연구회 주관 취업 설명회<br>• 기업체 인사담당자 초청 공개 실기 테스트(트라이아웃)<br>• 졸업 후 직무적응 지도(사후관리)</td>
+                                <td>• 개별화전환계획(ITP) 수립 시 체육 진로 트랙 명시<br>• 특수학교 전공과 체육 전문 실무과정 설치 지원</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>2026년 학교체육 활성화 기본계획과 2026년 특수교육 운영계획(교육부 및 각 시도 교육청) 지침 원문을 요약한 참고 자료입니다.</p>
+        <p>최종 판단은 학교장 결재와 소속 교육청 안내를 따르세요. (기준일: <span id="currentDateDisplay"></span>)</p>
+        <p>
+            출처 및 안내: 
+            <a href="https://www.moe.go.kr" target="_blank" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">교육부 공식 홈페이지</a> | 
+            <a href="https://www.cbe.go.kr" target="_blank" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">충청북도교육청</a> |
+            <a href="http://www.cbsad.or.kr" target="_blank" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">충청북도장애인체육회</a>
+        </p>
+        <p class="footer-org">충북특수체육진로이음연구회</p>
+    </footer>
+
+    <script>
+        // ================= 충북 11개 시·군 인프라 상세 데이터 =================
+        const chungbukData = {
+            "청주시": {
+                office: "청주시장애인체육회",
+                address: "충북 청주시 상당구 단재로317번길 59-9 / 청주시 청원구 사천로 18번길 81",
+                tel: "043-211-4603~5",
+                duties: [
+                    "찾아가는 장애인 생활체육지도자 학교 순회 파견 (특수학교 및 일반학교 특수학급 대상)",
+                    "방과후 장애학생 맞춤형 체육교실 기획·운영 (볼링, 수영, 육상 종목 등)",
+                    "충북청주 장애인체력인증센터 및 청주 체력인증센터 연계 체력측정 및 운동처방 지원",
+                    "청주시장배 장애인 생활체육대회 및 종목별 어울림 대회 개최 지원"
+                ],
+                fitnessCenters: [
+                    { name: "충북청주 장애인체력인증센터", tag: "badge-disability-fit", addr: "청주시 청원구 밀레니엄1로 33 (장애인 전문)", tel: "043-211-4610", note: "특수학급·특수학교 대상 PAPS-D 무료 출장 측정, 장애유형별 맞춤 운동처방 및 체력증진교실 운영" },
+                    { name: "국민체력100 청주 체력인증센터", tag: "badge-fitness", addr: "청주시 청원구 사천로 18번길 81 청주시장애인스포츠센터 내", tel: "043-211-4603", note: "국민체력100 공인 체력측정, 비장애 및 경증 장애학생 체력 평가 및 인증서 발급" }
+                ],
+                facilities: [
+                    { name: "청주시장애인스포츠센터 및 근린생활다목적체육관", tag: "badge-center", desc: "사천동 소재 / 체육관, 론볼장, 수영장, 배드민턴, 펜싱 훈련장 (장애인 우선 대관)" },
+                    { name: "청주 올림픽기념국민생활관", tag: "badge-center", desc: "사직대로 229 / 실내 배드민턴, 보치아, 탁구 및 체력단련실" }
+                ],
+                schoolTip: "충북청주 장애인체력인증센터에 공문 신청 시 특수학급으로 직접 방문하는 'PAPS-D 출장 측정 버스 및 전담 측정팀'을 무상 지원받을 수 있습니다."
+            },
+            "충주시": {
+                office: "충주시장애인체육회",
+                address: "충북 충주시 대림로 85 (호암동) 충주종합운동장 내",
+                tel: "043-856-0351",
+                duties: [
+                    "특수학급 맞춤형 생활체육지도자 순회 파견 및 뉴스포츠 교실 운영",
+                    "충주 반다비 국민체육센터 연계 장애학생 수영 및 재활체육 프로그램 지원",
+                    "국민체력100 충주 체력인증센터 연계 학생 체력 측정 지원",
+                    "전국장애학생체전 및 도민체전 종목별(조정, 론볼, 보치아, 육상) 집중 훈련 지원"
+                ],
+                fitnessCenters: [
+                    { name: "국민체력100 충주 체력인증센터", tag: "badge-fitness", addr: "충주시 대림로 85 충주종합운동장 내", tel: "043-856-0351", note: "학생 및 시민 대상 체력측정 및 운동처방, 북부권 순회 측정 협조" }
+                ],
+                facilities: [
+                    { name: "충주 반다비 국민체육센터", tag: "badge-bandabi", desc: "교현동 470-3 / 수영장(경사로·가족샤워실 완비), 다목적체육관, 재활운동실" },
+                    { name: "충주종합운동장 및 호암체육관 / 탄금호 조정경기장", tag: "badge-center", desc: "육상 트랙, 실내 구기 경기장 및 수상/실내조정 전용 훈련 시설" }
+                ],
+                schoolTip: "반다비체육센터 수영장은 단체 사전 신청 시 장애학생 전용 레인을 배정받을 수 있습니다."
+            },
+            "제천시": {
+                office: "제천시장애인체육회",
+                address: "충북 제천시 관전로 70 (신동) 제천어울림체육센터 내",
+                tel: "043-642-6716",
+                duties: [
+                    "제천어울림체육센터 시설 대관 및 연계 체육수업 전폭 지원",
+                    "특수학급 순회 뉴스포츠·배드민턴 지도자 파견",
+                    "국민체력100 제천 체력인증센터 연계 학생 건강체력 평가",
+                    "장애청소년 스포츠클럽 및 전국체전 꿈나무 육성"
+                ],
+                fitnessCenters: [
+                    { name: "국민체력100 제천 체력인증센터", tag: "badge-fitness", addr: "제천시 숭의로 83 제천체육관 내", tel: "043-641-5120", note: "공인 체력측정 및 운동처방, 학교 연계 체력교실 운영" }
+                ],
+                facilities: [
+                    { name: "제천 어울림체육센터", tag: "badge-center", desc: "관전로 70 / 다목적체육관, 론볼장, 체력단련실, e스포츠실 (장애인 전용 복합센터)" },
+                    { name: "제천 올림픽스포츠센터", tag: "badge-center", desc: "화산동 / 실내 체육관 및 수영장" }
+                ],
+                schoolTip: "어울림체육센터 내 장애인 전용 셔틀버스를 연계하여 학교 이동 지원이 가능합니다."
+            },
+            "보은군": {
+                office: "보은군장애인체육회",
+                address: "충북 보은군 보은읍 군청길 71번길 보은스포츠파크 육상경기장 내",
+                tel: "043-543-3110",
+                duties: [
+                    "관내 특수학급 대상 찾아가는 생활체육지도자 파견",
+                    "육상·보치아 기초 종목 지도 및 훈련용품 무상 대여",
+                    "보은스포츠파크 공공시설 활용 체육 프로그램 운영",
+                    "인근 청주 장애인체력인증센터 출장 연계 지원"
+                ],
+                fitnessCenters: [
+                    { name: "충북청주 장애인체력인증센터 출장 권역", tag: "badge-disability-fit", addr: "보은군 관내 특수학급 출장 방문", tel: "043-211-4610", note: "연 1회 신청을 통해 학교로 찾아가는 장애학생 PAPS-D 측정 서비스 제공" }
+                ],
+                facilities: [
+                    { name: "보은 스포츠파크 결초보은 체육관 및 육상경기장", tag: "badge-center", desc: "공인 규격 육상트랙, 실내 체육관, 인조잔디구장" },
+                    { name: "보은 국민체육센터", tag: "badge-center", desc: "수영장, 헬스장 완비" }
+                ],
+                schoolTip: "스포츠파크 시설 대관 시 군청 공문 발송으로 사용료 전액 면제 혜택을 받을 수 있습니다."
+            },
+            "옥천군": {
+                office: "옥천군장애인체육회",
+                address: "충북 옥천군 옥천읍 삼양로 47-4 옥천반다비체육센터 내",
+                tel: "043-730-7903",
+                duties: [
+                    "옥천반다비 수영·체육교실 특수학급 단체 연계 운영",
+                    "관내 특수학급 순회 생활체육 지도자 파견",
+                    "국민체력100 옥천 체력인증센터 연계 체력 평가 지원",
+                    "장애학생체전 종목별(수영, 볼링 등) 훈련 지원"
+                ],
+                fitnessCenters: [
+                    { name: "국민체력100 옥천 체력인증센터", tag: "badge-fitness", addr: "옥천군 옥천읍 삼양로 47-4 옥천반다비체육센터 내", tel: "043-730-7903", note: "반다비센터 내 위치하여 장애학생 및 비장애학생 원스톱 체력측정 가능" }
+                ],
+                facilities: [
+                    { name: "옥천 반다비체육센터", tag: "badge-bandabi", desc: "수영장, 다목적체육관, 체력단련실, 다목적실 (BF 최우수 인증)" },
+                    { name: "옥천 국민체육센터", tag: "badge-center", desc: "실내 배드민턴 및 체육공간" }
+                ],
+                schoolTip: "반다비체육센터 수영장과 국민체력100 인증센터가 같은 건물에 위치하여 수영 수업과 체력 측정을 하루에 연계 가능합니다."
+            },
+            "영동군": {
+                office: "영동군장애인체육회",
+                address: "충북 영동군 영동읍 영동황간로 123 문화체육센터 내",
+                tel: "043-745-8001",
+                duties: [
+                    "특수학급 방문 생활체육지도자 파견 (배드민턴, 탁구, 뉴스포츠)",
+                    "장애학생 방과후 체육교실 및 체육용품 무상 대여",
+                    "도체전 및 학생체전 선수단 합동 강화훈련",
+                    "출장 장애인 체력측정 연계 지원"
+                ],
+                fitnessCenters: [
+                    { name: "충북청주 장애인체력인증센터 남부 출장팀", tag: "badge-disability-fit", addr: "영동 관내 학교 출장 지원", tel: "043-211-4610", note: "특수학급 순회 측정 및 맞춤 운동 처방전 발급" }
+                ],
+                facilities: [
+                    { name: "영동 문화체육센터 및 영동국민체육센터", tag: "badge-center", desc: "수영장, 배드민턴장, 헬스장" },
+                    { name: "영동 복합문화예술회관", tag: "badge-center", desc: "다목적 체육 및 댄스실" }
+                ],
+                schoolTip: "체육회 지도자가 직접 학교를 방문하여 PAPS-D 측정 장비를 설치하고 측정을 지원합니다."
+            },
+            "증평군": {
+                office: "증평군장애인체육회",
+                address: "충북 증평군 증평읍 광장로 138 증평체육관 내",
+                tel: "043-835-3983",
+                duties: [
+                    "관내 특수학급 찾아가는 체육교실 지도자 파견",
+                    "국민체력100 증평 체력인증센터 연계 체력 관리",
+                    "보치아·뉴스포츠 집중 지도 및 스포츠 한마당 주관",
+                    "체육교구 대여 및 안전 지도 지원"
+                ],
+                fitnessCenters: [
+                    { name: "국민체력100 증평 체력인증센터", tag: "badge-fitness", addr: "증평군 증평읍 송산로 18 증평생활체육관 내", tel: "043-835-4171", note: "군 단위 최초 체력인증센터, 정기 체력측정 및 맞춤형 운동 프로그램 제공" }
+                ],
+                facilities: [
+                    { name: "증평 종합스포츠센터 및 생활체육관", tag: "badge-center", desc: "실내체육관, 수영장, 론볼장" },
+                    { name: "증평체육관", tag: "badge-center", desc: "실내 구기 경기장" }
+                ],
+                schoolTip: "증평생활체육관 내 체력인증센터와 연계하여 학기 초 전교생 체력 측정을 편리하게 진행할 수 있습니다."
+            },
+            "진천군": {
+                office: "진천군장애인체육회",
+                address: "충북 진천군 진천읍 원덕로 166 진천종합스포츠타운 체육관 B동 1층",
+                tel: "043-535-1980",
+                duties: [
+                    "교육감배 장애학생육상대회 개최지 트랙 적응 훈련 집중 지원",
+                    "특수학급 순회 체육지도자 파견 및 장애청소년 체육 프로그램 연계",
+                    "국민체력100 진천 체력인증센터 연계 체력 평가",
+                    "도민체전 및 전국체전 출전 선수 장비 지원"
+                ],
+                fitnessCenters: [
+                    { name: "국민체력100 진천 체력인증센터", tag: "badge-fitness", addr: "진천군 진천읍 문화로 69-4 진천군종합운동장 내", tel: "043-539-3743", note: "공인 규격 측정 장비 구비, 육상 학생선수 전문 기초체력 데이터 측정 지원" }
+                ],
+                facilities: [
+                    { name: "진천종합스포츠타운 및 종합운동장", tag: "badge-center", desc: "공인 육상 트랙/필드 경기장, 실내수영장, 다목적체육관" },
+                    { name: "초평생활체육공원", tag: "badge-center", desc: "다목적 실외 구기장" }
+                ],
+                schoolTip: "진천종합운동장은 교육감배 장애학생육상대회 공식 경기장이므로 대회 전 사전 적응 훈련 대관을 적극 권장합니다."
+            },
+            "괴산군": {
+                office: "괴산군장애인체육회",
+                address: "충북 괴산군 괴산읍 임꺽정로 99-9 문화체육센터 내",
+                tel: "043-830-3886",
+                duties: [
+                    "소규모 특수학급 1:1 및 소그룹 맞춤형 생활체육 지도자 파견",
+                    "뉴스포츠 교구 지원 및 기초체력 증진 프로그램 운영",
+                    "찾아가는 장애인 체력측정 출장 서비스 연계",
+                    "힐링 스포츠 캠프 지원"
+                ],
+                fitnessCenters: [
+                    { name: "충북청주 장애인체력인증센터 순회 측정팀", tag: "badge-disability-fit", addr: "괴산 관내 초·중·고 특수학급", tel: "043-211-4610", note: "괴산 관내 학교 순회 출장 측정 지원" }
+                ],
+                facilities: [
+                    { name: "괴산 문화체육센터 및 국민체육센터", tag: "badge-center", desc: "수영장, 헬스장, 실내체육관" },
+                    { name: "괴산군장애인복지관 다목적강당", tag: "badge-center", desc: "소체육실" }
+                ],
+                schoolTip: "순회 측정 신청 시 특수학급 교실 크기에 맞춰 간이 PAPS-D 장비로 측정 가능합니다."
+            },
+            "음성군": {
+                office: "음성군장애인체육회",
+                address: "충북 음성군 음성읍 신천리 363 음성반다비국민체육센터 2층",
+                tel: "043-873-9195",
+                duties: [
+                    "관내 특수학급 '찾아가는 생활체육 서비스' 주 1회 지도자 파견 (배드민턴·볼링·뉴스포츠)",
+                    "음성반다비 수영·체육시설 및 체육용품 무상 대여",
+                    "국민체력100 음성 체력인증센터 연계 체력 평가",
+                    "꽃동네학교 등 관내 특수학교 학생선수 육성 연계"
+                ],
+                fitnessCenters: [
+                    { name: "국민체력100 음성 체력인증센터", tag: "badge-fitness", addr: "음성군 음성읍 예술로 102 음성종합운동장 내", tel: "043-871-3830", note: "음성종합운동장 내 위치, 청소년 및 장애학생 기초 체력 측정 지원" }
+                ],
+                facilities: [
+                    { name: "음성 반다비국민체육센터", tag: "badge-bandabi", desc: "음성읍 체육공원길 36 / 수영장, 체력단련실, 다목적체육관, GX룸 (BF 인증)" },
+                    { name: "음성종합운동장", tag: "badge-center", desc: "육상 트랙 및 롤러 경기장" }
+                ],
+                schoolTip: "음성 반다비센터 수영장은 휠체어 입수 경사로와 가족샤워실이 완비되어 중증장애학생 생존수영 실기에 최적입니다."
+            },
+            "단양군": {
+                office: "단양군장애인체육회",
+                address: "충북 단양군 단양읍 별곡3로 19 단양군체육관 북관 1층",
+                tel: "043-423-0201",
+                duties: [
+                    "특수학급 순회 생활체육교실 운영 (보치아, 셔플보드 등)",
+                    "체육교구 대여 및 장애학생 생활체육 참여 지원",
+                    "어울림 체육대회 출전 선수단 훈련비 지원",
+                    "북부권 장애인 체력측정 출장 서비스 연계"
+                ],
+                fitnessCenters: [
+                    { name: "국민체력100 제천 체력인증센터 북부 연계망", tag: "badge-fitness", addr: "단양 관내 학교 연계 측정", tel: "043-641-5120", note: "인근 제천 센터와 연계하여 출장 측정 서비스 제공" }
+                ],
+                facilities: [
+                    { name: "단양군체육관 및 국민체육센터", tag: "badge-center", desc: "수영장, 다목적체육관, 스쿼시장" },
+                    { name: "단양 다목적체육관", tag: "badge-center", desc: "실내 구기 활동장" }
+                ],
+                schoolTip: "단양국민체육센터 수영장 이용 시 사전 단체 신청을 통하여 인솔 특수교사 무료입장이 가능합니다."
+            }
+        };
+
+        // ================= 전국 시·도 데이터 =================
+        const nationData = {
+            "서울특별시": {
+                office: "서울특별시 장애인체육회",
+                address: "서울특별시 송파구 올림픽로 25 서울종합운동장 내",
+                tel: "02-2203-0500",
+                duties: [
+                    "서울 관내 특수학교(20교) 및 특수학급 대상 체력회복 스포츠강사 파견 배치",
+                    "『손에 잡히는 PAPS-D』 표준 매뉴얼 기반 맞춤형 체력 증진 사업 총괄",
+                    "서울 장애인체력인증센터 및 권역별 국민체력100 센터 운영망 총괄",
+                    "텐덤사이클, 어울림 풋살 등 장애·비장애 통합체육 프로그램 운영"
+                ],
+                facilities: [
+                    { name: "서울 장애인체력인증센터", tag: "badge-disability-fit", desc: "서울 송파구 올림픽로 25 / 서울 전역 장애학생 출장 측정 및 운동처방" },
+                    { name: "서울시립발달장애인복지관 체육관", tag: "badge-center", desc: "동작구 여의대방로20길 33 / 발달장애 전용 수영장 및 실내체육관" }
+                ]
+            },
+            "인천광역시": {
+                office: "인천광역시 장애인체육회",
+                address: "인천광역시 문학동 매소홀로 618 문학경기장 내",
+                tel: "032-899-5700",
+                duties: [
+                    "인천장애인체력인증센터 연계 초4~고3 장애학생 신체능력검사 의무 측정 지원",
+                    "장애·비장애 통합스포츠클럽 (축구, 농구, 볼링) 운영비 및 지도자 지원",
+                    "체육 진로 희망 장애학생 대상 1:1 멘토링 및 학습코칭 프로그램 운영",
+                    "스포츠강사 대상 특수체육 전문 직무연수 개설 및 관리"
+                ],
+                facilities: [
+                    { name: "인천장애인국민체육센터 및 체력인증센터", tag: "badge-disability-fit", desc: "연수구 선학동 58-1 / 체력인증센터, 다목적체육관, 수영장 완비" }
+                ]
+            },
+            "경기도": {
+                office: "경기도 장애인체육회",
+                address: "경기도 수원시 장안구 서부로 2140 경기체육회관 내",
+                tel: "031-240-0800",
+                duties: [
+                    "용인 거점 가상현실(VR) 스포츠체험센터 운영 및 관내 학교 체험 지원",
+                    "전국장애학생체육대회 종목별 거점학교 육성 및 전문 장비 지원",
+                    "경기 4개 권역(수원/의정부/부천/고양) 장애인체력인증센터 학교 순회 출장 측정",
+                    "통합체육정책실행연구회 연계 교원 연수 지원"
+                ],
+                facilities: [
+                    { name: "경기도 4개 권역 장애인체력인증센터", tag: "badge-disability-fit", desc: "수원, 의정부, 부천, 고양 거점 센터 운영" },
+                    { name: "용인 VR 스포츠체험센터", tag: "badge-center", desc: "용인 처인구 / 첨단 스마트 체육관" }
+                ]
+            },
+            "세종특별자치시": {
+                office: "세종특별자치시 장애인체육회",
+                address: "세종특별자치시 조치원읍 군청로 93",
+                tel: "044-866-5001",
+                duties: [
+                    "축구, 보치아 등 7개 종목 토요생활체육프로그램 강사비 및 용품비 지원",
+                    "세종시교육감배 장애학생 체육대회(10월) 상시 훈련 체계 구축",
+                    "세종 반다비 빙상장 연계 동계스포츠 종목 육성",
+                    "세종 체력인증센터 연계 건강체력 평가"
+                ],
+                facilities: [
+                    { name: "세종 반다비 빙상장 및 국민체육센터", tag: "badge-bandabi", desc: "세종시 세종동 / 반다비 빙상장 및 체육관" }
+                ]
+            },
+            "충청남도": {
+                office: "충청남도 장애인체육회",
+                address: "충청남도 아산시 선장면 삽교천로 92",
+                tel: "041-635-0080",
+                duties: [
+                    "역도, 수영, 보치아 종목별 체육중점 특수학교 집중 육성 지원",
+                    "초등 1~6학년 생존수영 실기(연 10시간) 강사 연계 및 시설 협조",
+                    "충남장애인체력인증센터 연계 학교 순회 측정 지원",
+                    "특수학교 학교스포츠클럽 리그전 운영"
+                ],
+                facilities: [
+                    { name: "아산 반다비 국민체육센터", tag: "badge-bandabi", desc: "아산시 곡교천로 27 / 수영장 및 다목적체육관" },
+                    { name: "충남 장애인체력인증센터 (아산)", tag: "badge-disability-fit", desc: "전문 체력평가 및 운동처방" }
+                ]
+            },
+            "대구광역시": {
+                office: "대구광역시 장애인체육회",
+                address: "대구광역시 수성구 미술관로 40 대구스타디움 내",
+                tel: "053-793-2332",
+                duties: [
+                    "대구특수교육원 연계 체육 전담 특수교사 5명 배치 지원 및 학교 순회 방문",
+                    "특수교육원 내 전용 수영장·휘트니스실 활용 생존수영 지도",
+                    "대구 장애인체력인증센터 연계 PAPS-D 검사",
+                    "졸업 후 기업체 장애인 체육선수 취업 연계망 구축"
+                ],
+                facilities: [
+                    { name: "대구특수교육원 전용 수영장 및 헬스장", tag: "badge-center", desc: "북구 구리로 / 장애학생 전용 체육시설" },
+                    { name: "대구 장애인체력인증센터", tag: "badge-disability-fit", desc: "수성구 대구스타디움 내" }
+                ]
+            }
+        };
+
+        // ================= 충북 도내 기업 직장운동경기부(취업선수) =================
+        const companyTeams = [
+            { id: 1, name: "삼진제약", region: "청주시", count: "3명", sports: "배드민턴 1, 역도 1, 컬링 1", note: "오송 바이오의약단지 소재 제약기업 (정규 근로자 대우)" },
+            { id: 2, name: "재세능원", region: "충주시", count: "4명", sports: "테니스 4", note: "충주 외국인투자기업 (이차전지 양극재 제조)" },
+            { id: 3, name: "효성병원", region: "청주시", count: "4명", sports: "탁구 1, 역도 1, 수영 2", note: "청주 의료법인 종합병원 (의료복지 혜택)" },
+            { id: 4, name: "프레스티지바이오로직스", region: "청주시", count: "6명", sports: "좌식배구 4, 탁구 1, 사격 1", note: "오송 바이오의약품 CDMO 전문기업" },
+            { id: 5, name: "주식회사 엘림", region: "청주시", count: "1명", sports: "배드민턴 1", note: "충북 도내 제조기업 (특수학급 졸업생 채용)" },
+            { id: 6, name: "도레이비에스에프코팅", region: "청주시", count: "2명", sports: "배구 1, 탁구 1", note: "오창 외국인투자기업 (이차전지 분리막 코팅)" },
+            { id: 7, name: "주식회사에이티세미콘", region: "진천군", count: "1명", sports: "론볼 1", note: "진천 반도체 패키징 및 테스트 전문기업" },
+            { id: 8, name: "한화비전(주)", region: "청주시", count: "4명", sports: "럭비 4", note: "한화그룹 시큐리티·영상보안 전문기업" },
+            { id: 9, name: "(주)대호특수강", region: "충주시", count: "2명", sports: "배드민턴 2", note: "충주 정밀 냉간압조용 특수강 제조업체" },
+            { id: 10, name: "(재)충북테크노파크", region: "청주시", count: "2명", sports: "수영 1, 역도 1", note: "오창 소재 충북 지역산업 육성 거점 공공기관" },
+            { id: 11, name: "에스케이아이이테크놀로지", region: "증평군", count: "1명", sports: "스노보드/태권도 1", note: "증평·청주 SK그룹 배터리 분리막 기업" },
+            { id: 12, name: "(주)호반티비엠", region: "청주시", count: "2명", sports: "수영 2", note: "충북 건설 및 지하 굴진 전문기업" },
+            { id: 13, name: "에코프로 스포츠단", region: "청주시", count: "12명", sports: "볼링 4, 육상 4, 배드민턴 4", note: "오창 본사 / 일일 훈련을 정규 근로시간으로 전액 인정하는 모범 모델" },
+            { id: 14, name: "삼화전기 체육선수단", region: "청주시", count: "6명", sports: "볼링 3, 조정 3", note: "청주 봉명동 본사 / 핀스트라이크볼링장 협약 전용 훈련 지원" },
+            { id: 15, name: "진천 현대모비스 협력단", region: "진천군", count: "5명", sports: "역도 3, 론볼 2", note: "진천 문백면 / 진천종합스포츠타운 상시 훈련 연계" },
+            { id: 16, name: "음성 한일시멘트 협력사", region: "음성군", count: "4명", sports: "볼링 2, 사격 2", note: "음성 핀타운볼링장 연계 / 중증장애인 의무고용 연계" },
+            { id: 17, name: "옥천 향수 표준사업장", region: "옥천군", count: "4명", sports: "e스포츠 2, 보치아 2", note: "옥천 동안농공단지 / 자회사형 장애인 표준사업장" }
+        ];
+
+        // ================= 표준 5단계 업무 프로세스 정의 =================
+        const standard5Steps = [
+            { step: 1, name: "종목단체 공문 접수", role: "특수교사 / 체육담당", desc: "대한장애인체육회 또는 종목단체 참가 협조 공문 접수 및 훈련계획서 확인" },
+            { step: 2, name: "참가 요건 사전 검토", role: "특수교사 / 담임교사", desc: "연간 출석인정결석 잔여 허용일수, 최저학력 도달 여부 및 안전 이동대책 검토" },
+            { step: 3, name: "대회 참가 내부결재", role: "학교장 / 교무기획", desc: "학교장 결재 및 공식 학교 대표 참가 승인 (안전공제회 보상 적용 요건 확보)" },
+            { step: 4, name: "나이스 출결 반영", role: "담임교사", desc: "담임교사 공문 공람 후 나이스(NEIS) 출석인정결석 등록 및 수업결손 시수 확정" },
+            { step: 5, name: "사후 결과 및 누적 관리", role: "지도교사 / 특수교사", desc: "복교 후 7일 이내 활동보고서 제출, e-School 이수 확인 및 체육관리 탭 누적 기록" }
+        ];
+
+        // ================= 핵심 규정 데이터베이스 (스프레드시트 22개 항목 정확히 매핑) =================
+        const database = [
+            {
+                id: 1,
+                category: "학생선수 출결",
+                timing: "대회 전",
+                keyword: "출석인정결석",
+                searchTags: ["출석인정결석", "결석", "수업결손", "허용일수", "체험학습", "공결", "출결처리", "지각", "조퇴", "결과", "6시간"],
+                title: "출석인정결석 허용일수 및 산정 기준",
+                summary: "초등 20일, 중학교 35일, 고등학교 50일 (수업결손 누적 6시간당 1일 산정)",
+                detail: "학생선수가 대회나 훈련에 참가할 때 학교장이 학업성적관리규정에 따라 허가할 수 있는 연간 출석인정결석 일수입니다. 지각, 조퇴, 결과로 인한 수업결손 누적 시간이 6시간이 되면 1일을 사용한 것으로 처리합니다(예: 지각 4시간+조퇴 4시간+결과 4시간 = 총 12시간 결손 시 2일 차감). 대회 및 훈련 참가를 사유로 교외체험학습(현장체험학습)을 활용하는 것은 금지됩니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 - Ⅲ. 학교운동부 및 학생선수 육성·지원 - 1. 학생선수 학습권 및 인권 보호 - 가. 학생선수 출결 관리(출석인정결석 허용일수) (p.36~37)",
+                checklist: ["출석인정결석 연간 잔여일수 사전 산출", "교외체험학습 중복 신청 여부 점검", "수업결손 보충학습 이수 계획 수립"],
+                currentStep: 2,
+                steps: standard5Steps,
+                mistakes: [
+                    { wrong: "결석 사유를 교외체험학습으로 편법 처리함", correct: "학생선수 공식 출석인정결석으로 적법하게 분리 처리" },
+                    { wrong: "지각·조퇴 시간을 누적하지 않고 일 단위만 계산함", correct: "수업결손 시간을 시간 단위로 누적 관리하여 6시간마다 1일 차감" }
+                ],
+                faqs: [{ q: "병원 진료로 지각한 것도 합산되나요?", a: "아닙니다. 오직 대회 참가 및 공식 훈련으로 발생한 수업결손 시간만 합산됩니다." }],
+                legalBasis: "학교체육 진흥법 시행령 제4조 및 초·중등교육법 시행령 제31조",
+                fieldCheck: "학교 학업성적관리규정에 명시된 학교급별 인정 일수 및 전결 규정 확인"
+            },
+            {
+                id: 2,
+                category: "학생선수 출결",
+                timing: "대회 전",
+                keyword: "예외인정",
+                searchTags: ["예외인정", "국가대표", "소년체전", "전국체전", "도대표", "평가전", "예선전", "일수제한제외", "장애학생체전", "증빙서류"],
+                title: "국가대표 및 주요 대회 출결 인정 결석 예외 기준 및 증빙서류 관리",
+                summary: "국가대표 참가·주요 대회(전국체전 등) 허용일수 예외 인정 + 필수 구비 증빙서류(공문, 참가확인서, 훈련일지) 편철 관리",
+                detail: "[1. 출석인정결석 허용일수 예외 인정 기준]\n대한체육회 또는 대한장애인체육회에서 인정하는 국가대표로 선발되어 국제대회 참가 및 공식 합숙훈련에 참여하는 경우(꿈나무, 청소년 대표, 국가대표 후보 포함)와 전국소년체육대회, 전국체육대회, 전국장애학생체육대회, 전국동계체육대회 및 해당 대회의 지역 예선(충북소년체전 등) 참가는 출석인정결석 허용일수(초20/중35/고50일)에 포함하지 않고 예외 처리합니다.\n[2. 국가대표 출결 인정 필수 증빙서류 관리]\n국가대표 공식 합숙훈련 및 대회 참가 시 주최 체육단체의 공식 공문, 훈련 참가확인서, 일자별 훈련일지(훈련계획서)를 징구하여 결재를 득해야 합니다. 해당 증빙서류는 나이스 출결 증빙자료로 일괄 편철하여 5년간 보관합니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 - Ⅲ. 학교운동부 및 학생선수 육성·지원 - 1. 학생선수 학습권 및 인권 보호 - 가. 학생선수 출결 관리(출석인정결석 예외 인정 및 증빙) (p.37~38)",
+                checklist: ["공인 체육단체 공식 선발 공문 확인", "대회가 예외 대상 공식 예선/본선인지 확인", "학교장 내부결재 시 예외 사유 명시"],
+                currentStep: 1,
+                steps: standard5Steps,
+                mistakes: [
+                    { wrong: "장애학생체전 도대표 선발전을 일반 허용일수에서 차감함", correct: "공식 지역 예선전이므로 허용일수 차감 없이 전액 예외 인정 처리" }
+                ],
+                faqs: [{ q: "친선 대회도 예외인가요?", a: "장애학생체전 예선 겸임이 아닌 일반 친선대회는 일반 허용일수에서 차감됩니다." }],
+                legalBasis: "교육부 학교체육 활성화 기본계획 및 대한장애인체육회 규정",
+                fieldCheck: "대회 공문에 '전국장애학생체전 예선 겸임' 문구 적시 여부 확인"
+            },
+            {
+                id: 3,
+                category: "학생선수 출결 및 학력·보충학습 관리",
+                timing: "대회 중",
+                keyword: "5단계승인절차",
+                searchTags: ["대회참가", "훈련참가", "5단계승인", "내부결재", "승인절차", "학교장결재", "대회신청", "출전승인", "절차", "보충학습", "나이스연계"],
+                title: "학생선수 대회·훈련 참가 승인 절차 및 최저학력·보충학습(이스쿨)·나이스 연계 종합 지침",
+                summary: "5단계 참가 승인 + 최저학력(특수교육 대상자 예외 적용 심의) + e-School 및 학교 자체 보충학습(대면·과제 대체 가능) + 나이스 연계",
+                detail: "[1. 대회·훈련 참가 5단계 승인 절차]\n1단계: 종목단체·체육회 협조 공문 접수(또는 훈련계획서).\n2단계: 출결 허용일수 잔여분 검토, 최저학력 도달 여부, 보충학습 대책, 안전계획 검토.\n3단계: 학교장 내부결재 및 승인.\n4단계: 담임교사 공람 후 나이스 출결(출석인정) 처리.\n5단계: 학생선수 지도교사의 출결 일수·시간 체육관리 탭 누적 관리.\n\n[2. 최저학력제 기준 및 미도달자 조치]\n초4~고3 대상 직전 학기말 성적 반영. 미도달 시 다음 학기 경기대회 참가 제한(런업 60시간 이수 시 허용).\n※ [특수교육대상자 예외] 특수교육대상 학생선수는 일반 최저학력 기준이 강제되지 않으며, 개별화교육지원팀 의견 청취 및 학업성적관리위원회 심의를 통해 기준을 달리 정할 수 있음.\n\n[3. e-School 수업결손 보충학습 및 학교 자체 보충 운영 규정]\n대회 참가로 수업결손 발생 시 e-School 의무 수강. 단, 장애학생선수가 원격 수강이 어려울 경우 특수교사·교과교사의 개별 대면 지도나 과제물 제출 등으로 자체 대체 보충수업을 운영할 수 있음.\n\n[4. 나이스-이스쿨 연계 조회]\n'교육디지털원패스' 연동 후 나이스에서 e-School 이수내역 팝업 조회.",
+                docLocation: "2026 학교체육 활성화 기본계획 - Ⅲ. 학교운동부 및 학생선수 육성·지원 (1. 출결 관리 p.38 / 2. 최저학력제 운영 p.39~40 / 3. e-School 보충학습 p.42 / 4. 나이스 연계 p.44)",
+                checklist: ["5단계 체크리스트 단계별 완료 여부", "담임교사 사전 공람 완료", "안전 및 인솔 계획서 첨부"],
+                currentStep: 3,
+                steps: standard5Steps,
+                mistakes: [
+                    { wrong: "결재 완료 전 구두 승인으로 학생을 인솔하여 출전함", correct: "반드시 3단계 학교장 결재 완료 후 출전해야 안전공제회 보상 가능" }
+                ],
+                faqs: [{ q: "공문이 당일 아침에 도착하면?", a: "훈련계획서로 사전 선결재 득한 후 사후 공문 편철 가능합니다." }],
+                legalBasis: "학교체육 진흥법 제10조 및 도교육청 학교체육 기본계획",
+                fieldCheck: "학교 위임전결 규정상 대회 참가가 학교장 결재 대상인지 확인"
+            },
+            {
+                id: 4,
+                category: "최저학력제 (특수교육 예외)",
+                timing: "대회 전",
+                keyword: "최저학력제예외",
+                searchTags: ["특수교육대상자", "개별화교육지원팀", "최저학력예외", "학업성적관리위원회", "심의", "면제", "완화", "대체과제"],
+                title: "특수교육대상 학생선수 최저학력제 예외 적용 절차 [핵심 예외 규정]",
+                summary: "개별화교육지원팀 사전 협의·의견 청취 → 학업성적관리위원회 심의·의결로 기준 별도 설정 또는 적용 제외 + 교외훈련 출결 한도 및 대회 잔여일수 사전 확보 확인",
+                detail: "[1. 법적 근거 및 예외 원칙]\n학교체육 진흥법 시행규칙 제6조 제3항 및 장애인 등에 대한 특수교육법 제15조에 의거, 특수교육대상자로 선정된 학생선수는 일반 최저학력 도달 기준(초등 50%, 중학교 40%, 고등학교 30%) 및 런업(60h) 이수 의무를 그대로 적용하지 않고 장애 특성에 맞게 기준을 달리 정하거나 적용 대상에서 제외할 수 있습니다.\n\n[2. 특수교사 필수 실무 절차]\n① 1단계: 개별화교육지원팀 사전 협의 및 의견서 작성 (학기 초 또는 직전 학기말 성적 산출 후 특성에 맞춘 의견서 작성)\n② 2단계: 학업성적관리위원회 안건 상정 및 심의·의결\n③ 3단계: 학교장 승인 및 대회 참가 허용\n④ 4단계: 참가 승인 전 연간 출석인정결석 허용일수 잔여일수 확인\n\n[3. 특수교사 유의사항]\n일반 학생과 달리 기준 미도달 시에도 e-School 런업 이수가 일괄 강제되지 않으며, 위원회 결정으로 출전이 보장됩니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 - Ⅲ. 학교운동부 및 학생선수 육성·지원 - 1. 학생선수 학습권 및 인권 보호 - 나. 최저학력제 운영(특수교육대상자 예외 적용) (p.40) / 2026 충북특수교육 운영계획 - Ⅱ. 맞춤형 특수교육 실현 (p.28)",
+                checklist: ["개별화교육지원팀 회의록 작성", "학업성적관리위원회 안건 상정 요청", "의결 결과 학교장 내부결재"],
+                currentStep: 1,
+                steps: [
+                    { step: 1, name: "개별화교육지원팀 협의", role: "특수교사 주관", desc: "보호자, 특수교사, 담임교사가 모여 학생의 장애 특성을 고려한 최저학력 도달 대체 의견 수렴" },
+                    { step: 2, name: "학업성적관리위원회 심의", role: "교무부 / 성적관리위", desc: "개별화교육지원팀 회의록을 바탕으로 대체과제 부여 또는 기준 별도 적용 의결" },
+                    { step: 3, name: "학교장 최종 승인 및 나이스 반영", role: "학교장", desc: "심의 결과 내부결재 완료 후 최저학력 적용 예외 대상자로 나이스 및 체육회 제출" }
+                ],
+                mistakes: [
+                    { wrong: "개별화교육협의 절차를 생략하고 성적관리위원회에 직상정함", correct: "반드시 개별화교육지원팀 의견 청취 회의록을 증빙으로 첨부해야 유효함" }
+                ],
+                faqs: [{ q: "자동으로 면제되나요?", a: "자동 면제가 아니며 반드시 학기별 위원회 심의 절차를 거쳐 확정해야 합니다." }],
+                legalBasis: "학교체육 진흥법 시행규칙 제6조 제3항, 장애인 등에 대한 특수교육법 제15조",
+                fieldCheck: "도교육청 특수교육 운영계획의 최저학력제 예외 지침 문구 대조"
+            },
+            {
+                id: 5,
+                category: "학습권 보장",
+                timing: "대회 전",
+                keyword: "학습권보장",
+                searchTags: ["정규수업", "수업이수", "교외훈련", "교육청보고", "훈련보고", "수업결손방지", "학습권보장"],
+                title: "정규수업 이수 원칙 및 교외훈련 교육청 보고",
+                summary: "정규수업 이수 후 훈련 원칙, 교외훈련 인정조퇴·결석은 연간 허용일수 한도 내 처리 및 대회 출전 필수 잔여일수 사전 확보 의무, 상시 교외훈련 시 교육청 사전 보고",
+                detail: "학생선수는 교과 및 창의적 체험활동 등 모든 정규 교육과정을 충실히 이수한 후 훈련에 참가해야 합니다. 교내에 훈련장이 없거나 학생 안전상 야간 훈련이 불가능하여 정규수업 시간 중 교외 훈련이 불가피한 경우, 안전대책 수립 및 보충학습 제공 계획을 수립하여 관할 교육(지원)청(고교: 도교육청, 초·중: 시군교육지원청)에 사전 보고해야 합니다.\n\n[교외훈련 출결 한도 및 잔여일수 관리]\n교외훈련 참가로 인해 인정조퇴, 지각, 결과, 결석을 하는 경우 연간 출석인정결석 허용일수(초 20일, 중 35일, 고 50일) 범위 내에서만 가능합니다. 훈련으로 허용일수를 모두 소진할 경우 공식 경기대회 출전이 불가능해지므로 사전에 '대회 출전 필수 잔여일수'를 남겨두어야 합니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 - Ⅲ. 학교운동부 및 학생선수 육성·지원 - 1. 학생선수 학습권 및 인권 보호 - 다. 정규수업 이수 원칙 및 교외훈련 관리 (p.41)",
+                checklist: ["정규수업 침해 여부 사전 점검", "교외훈련 이동 안전계획 수립", "관할 교육지원청 사전 보고 공문 발송"],
+                currentStep: 2,
+                steps: [
+                    { step: 1, name: "교외훈련 사유 및 안전계획 수립", role: "특수교사 / 지도교사", desc: "교내 훈련장 부재 사유, 이동 경로, 안전대책 및 보충학습 계획서 수립" },
+                    { step: 2, name: "관할 교육(지원)청 사전 공문 보고", role: "체육부장 / 학교장", desc: "정규수업 시간 중 교외훈련 실시에 대한 사전 승인·보고 공문 발송" },
+                    { step: 3, name: "승인 후 정규수업 연계 훈련 실시", role: "인솔 교사", desc: "교육청 승인 결과에 따라 정해진 일정 및 안전수칙 준수 하에 교외 훈련 진행" }
+                ],
+                mistakes: [
+                    { wrong: "교육청 보고 없이 임의로 수업 단축 후 교외 볼링장 이동", correct: "사전 교육청 보고 절차 없이 정규수업 중 임의 교외 훈련 절대 금지" }
+                ],
+                faqs: [{ q: "보고 대상 기관은?", a: "고교는 도교육청 특수교육과/체육건강과, 초·중학교는 관할 교육지원청입니다." }],
+                legalBasis: "학교체육 진흥법 제10조(학생선수의 학습권 보장)",
+                fieldCheck: "소속 교육지원청 교외훈련 보고 공문 서식 확인"
+            },
+            {
+                id: 6,
+                category: "나이스 관리",
+                timing: "대회 전",
+                keyword: "나이스관리",
+                searchTags: ["학생선수 등록", "선수등록", "개인선수등록", "나이스등록", "개인운동선수", "학생선수관리", "neis", "나이스", "등록방법"],
+                title: "나이스(NEIS) 개인학생선수 등록 및 출결 관리",
+                summary: "[체육]-[학생선수관리]-[등록]에서 개인선수 등록 + 연간 출결허용(초20/중35/고50일) 내 인정조퇴·결석 관리 및 대회 잔여일수 사전 확보",
+                detail: "학교운동부 소속이 아니더라도 체육단체에 등록된 개인학생선수는 학기 초 나이스에 등록해야 합니다. 경로: [체육]-[학생선수관리]-[등록]-[학생찾기]-[학생명 조회]-[개인운동선수 체크]-[종목/세부종목/시작일자 입력]-[저장]. 등록 후 [학적] 메뉴와 연동되어 지각·조퇴·결과 및 출석인정결석 일수를 시간 단위로 누적 관리할 수 있습니다.\n\n※ [인정조퇴·결석 허용일수 및 대회 출전 잔여일수 관리 규정]\n나이스 등록 개인학생선수의 교외훈련 및 대회 참가 출결 처리는 연간 허용일수(초20, 중35, 고50일) 내에서만 처리 가능하므로 대회 출전 잔여일수를 반드시 남겨두어야 합니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 - Ⅲ. 학교운동부 및 학생선수 육성·지원 - 2. 학생선수 관리 체계화 - 가. 나이스(NEIS) 개인학생선수 등록 및 출결 관리 (p.43~44)",
+                checklist: ["대한장애인체육회 선수등록증 사본 확인", "나이스 체육 메뉴 개인운동선수 체크", "학적 탭 연동 테스트"],
+                currentStep: 2,
+                steps: [
+                    { step: 1, name: "선수등록증 접수 및 본인 확인", role: "특수교사", desc: "대한장애인체육회 공식 경기인 등록시스템 상 선수등록 확인서 징구" },
+                    { step: 2, name: "나이스 [학생선수관리] 메뉴 등록", role: "체육담당교사 / 특수교사", desc: "나이스 체육 메뉴에서 '개인운동선수' 선택 후 종목, 세부종목, 시작일자 입력 및 저장" },
+                    { step: 3, name: "학적 및 출결 연동 상태 확인", role: "담임교사", desc: "나이스 학적-출결 탭에서 학생선수 지정 여부 확인 및 시간 단위 결손 누적 준비" }
+                ],
+                mistakes: [
+                    { wrong: "운동부가 없다고 나이스 등록을 아예 생략함", correct: "개인 자격 선수도 반드시 [개인운동선수]로 나이스 등록 필수" }
+                ],
+                faqs: [{ q: "복수 종목(예: 육상 및 보치아) 등록 가능한가요?", a: "주 종목 우선 등록 후 세부종목란에 추가 기재하여 관리합니다." }],
+                legalBasis: "교육부 교육정보시스템(NEIS) 학교생활기록부 기재요령",
+                fieldCheck: "나이스 권한관리에서 담당 교사에게 '체육-학생선수' 권한 부여 여부 확인"
+            },
+            {
+                id: 7,
+                category: "개인선수 관리",
+                timing: "대회 전",
+                keyword: "개인선수관리",
+                searchTags: ["로드맵", "학기초", "3월", "개인선수관리", "가정통신문", "선수파악", "학운위심의"],
+                title: "3월 학기 초 개인학생선수 관리 로드맵",
+                summary: "가정통신문 발송 → 선수등록증 및 연간활동계획서 수합 → 학운위/성적관리위 심의 → 내부결재",
+                detail: "3월 초 학교운동부 외에 개별적으로 대한장애인체육회 가맹단체에 등록되어 활동 중인 학생을 파악하기 위해 가정통신문을 발송합니다. 학부모로부터 선수등록확인서, 개인정보동의서, 연간활동계획서를 수합하고, 학업성적관리위원회를 통해 출결 처리 및 수업결손 대책을 심의한 후 학교장 내부결재를 득하여 1년간의 활동을 공식 승인합니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 - Ⅲ. 학교운동부 및 학생선수 육성·지원 - 3. 학교운동부 및 개인학생선수 관리 - 가. 개인학생선수 관리 로드맵 (p.46)",
+                checklist: ["3월 1주 가정통신문 발송", "등록증 및 계획서 수합", "학업성적관리위원회 안건 상정"],
+                currentStep: 1,
+                steps: [
+                    { step: 1, name: "가정통신문 발송 및 파악", role: "특수교사", desc: "장애인체육회 등록 학생 파악 가정통신문 발송" },
+                    { step: 2, name: "연간활동계획서·등록증 수합", role: "특수교사", desc: "가정으로부터 안전계획이 포함된 연간 훈련계획서 수합" },
+                    { step: 3, name: "위원회 심의 및 학교장 승인", role: "교무기획 / 학교장", desc: "출결 및 학습권 보장 심의 후 학교장 내부결재로 1년 활동 승인" }
+                ],
+                mistakes: [
+                    { wrong: "학기 중 대회가 닥쳤을 때 급하게 개인선수 서류를 만듦", correct: "3월 초 정례 로드맵에 따라 사전 전수 파악 및 공식 결재 완료 필수" }
+                ],
+                faqs: [{ q: "동아리 수준도 등록하나요?", a: "공식 체육회 경기인 등록시스템에 등록된 학생선수가 대상입니다." }],
+                legalBasis: "학교체육 진흥법 제10조 및 도교육청 연간 업무 추진 계획",
+                fieldCheck: "학교 교육계획서에 '개인학생선수 관리 규정' 반영 여부"
+            },
+            {
+                id: 8,
+                category: "개인선수 관리",
+                timing: "대회 전",
+                keyword: "개인선수관리",
+                searchTags: ["활동계획서", "연간계획서", "안전대책", "지도자정보", "서식", "이동대책"],
+                title: "개인학생선수 연간활동계획서 필수 포함 항목",
+                summary: "연간 훈련일정, 출전 예정 대회, 지도자 인적사항, 이동 및 안전대책, 개인예방수칙",
+                detail: "연간활동계획서에는 연간 기초체력 및 기능 훈련 계획(요일, 시간, 훈련장소), 참가 예정 대회 목록, 종목 지도자 자격 정보가 명시되어야 합니다. 특히 학교 밖 활동에 따른 인솔자 및 차량 이동 방법, 준비·정리운동 등 부상 방지 대책, 훈련장소 안전 점검 수칙 등 '안전 및 예방 대책'이 구체적으로 포함되어야 하며 보호자 연서 서명이 필수입니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 - Ⅲ. 학교운동부 및 학생선수 육성·지원 - 3. 학교운동부 및 개인학생선수 관리 - 나. 개인학생선수 연간활동계획서 필수 포함 항목 (p.47)",
+                checklist: ["지도자 자격 증명 첨부", "훈련 이동 차량 안전보험 확인", "보호자 자필 서명 날인"],
+                currentStep: 2,
+                steps: [
+                    { step: 1, name: "보호자 계획서 작성", role: "학부모", desc: "보호자 및 외부지도자가 작성한 상세 연간 활동계획서 작성" },
+                    { step: 2, name: "안전대책 검토", role: "특수교사", desc: "차량 이동 및 훈련장 안전 수칙 점검" },
+                    { step: 3, name: "서명 및 학교장 승인", role: "학교장", desc: "모든 서류 수합 후 내부결재 승인" }
+                ],
+                mistakes: [
+                    { wrong: "안전 이동 대책 없이 훈련 일정표만 첨부함", correct: "차량 탑승자, 이동 경로, 비상연락망이 포함된 안전계획 필수 누락 금지" }
+                ],
+                faqs: [{ q: "훈련 장소 변경 시에는?", a: "변경계획서를 제출하여 수정 결재를 득합니다." }],
+                legalBasis: "학교 안전사고 예방 및 보상에 관한 법률 제8조",
+                fieldCheck: "개인차량 이동 시 종합보험 가입 여부 증빙 첨부"
+            },
+            {
+                id: 9,
+                category: "개인선수 관리",
+                timing: "대회 후",
+                keyword: "개인선수관리",
+                searchTags: ["활동보고서", "결과보고", "7일이내", "대회복교", "실적보고", "출결정산"],
+                title: "대회 및 훈련 참가 후 활동보고서 제출",
+                summary: "대회/훈련 종료 후 7일 이내에 활동보고서 수합 및 학교장 결과 보고(내부결재)",
+                detail: "학생선수가 대회 출전이나 전지훈련을 마치고 학교에 복교하면 7일 이내에 '개인학생선수 활동 보고서'를 작성하여 담당 교사에게 제출해야 합니다. 보고서에는 실제 참가 기간, 경기 실적, 세부 활동 내용, e-School 수업결손 수강 여부(또는 자체 보충수업 증빙) 등이 포함되어야 하며, 담당 교사는 이를 첨부하여 학교장 결과 보고 내부결재를 진행하고 담임교사에게 최종 출결 확인을 요청합니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 - Ⅲ. 학교운동부 및 학생선수 육성·지원 - 3. 학교운동부 및 개인학생선수 관리 - 다. 대회 및 훈련 참가 후 활동보고서 제출 (p.48)",
+                checklist: ["대회 상장 사본 및 대진표 첨부", "7일 이내 제출 기한 준수", "학교장 결과보고 결재 완료"],
+                currentStep: 4,
+                steps: [
+                    { step: 1, name: "대회 종료 및 학교 복교", role: "학생", desc: "대회나 훈련 종료 후 학교 복귀" },
+                    { step: 2, name: "활동보고서 제출(7일내)", role: "학생/학부모", desc: "결과 및 증빙서류 취합 후 교사에게 제출" },
+                    { step: 3, name: "결과보고 결재", role: "특수교사", desc: "학교장 결과보고 내부결재 상신" },
+                    { step: 4, name: "출결 최종 확정", role: "담임교사", desc: "출석인정결석 나이스 마감 처리" }
+                ],
+                mistakes: [
+                    { wrong: "대회 출전 후 활동보고서를 결재받지 않고 방치함", correct: "복교 후 7일 이내 공식 결과 보고 내부결재를 득해야 감사업무 상 하자 없음" }
+                ],
+                faqs: [{ q: "메달을 못 따도 내나요?", a: "출전 결과 및 출결 증빙을 위해 전원 제출해야 합니다." }],
+                legalBasis: "충청북도교육청 학교체육 업무 처리 지침",
+                fieldCheck: "결과보고 문서에 보충학습(이스쿨/자체) 증빙 첨부 여부"
+            },
+            {
+                id: 10,
+                category: "인권 및 안전",
+                timing: "대회 전",
+                keyword: "인권및안전",
+                searchTags: ["의무교육", "스포츠윤리센터", "도핑방지교육", "온라인교육", "KADA", "선수등록필수", "성폭력예방", "폭력예방"],
+                title: "학생선수 법적 의무교육 및 선수등록 필수 온라인 교육",
+                summary: "스포츠윤리센터 교육(폭력·성폭력·인권 통합) 및 KADA 도핑방지교육 온라인 이수 시 법적 의무교육 충족",
+                detail: "장애학생선수는 매년 대한장애인체육회 선수등록 시 필수로 제출해야 하는 ① 스포츠윤리센터 스포츠윤리아카데미 온라인 교육과 ② 한국도핑방지위원회(KADA) 온라인 도핑방지교육을 이수하면 학교 법정 의무교육(성폭력예방, 인권교육, 도핑방지)이 모두 충족됩니다. 따라서 특수교사는 학기 초 선수등록 시 이 두 가지 필수 온라인 교육의 이수증 제출 및 등록 관리만 중점적으로 신경쓰면 업무를 완결할 수 있습니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 - Ⅲ. 학교운동부 및 학생선수 육성·지원 - 4. 학생선수 인권 보호 및 안전 강화 - 가. 학생선수 법적 의무교육 (p.49)",
+                checklist: ["스포츠윤리센터 이수증 수합", "KADA 도핑방지 수료증 수합", "선수등록시스템 파일 업로드"],
+                currentStep: 1,
+                steps: [
+                    { step: 1, name: "스포츠윤리아카데미 수강", role: "학생 / 특수교사", desc: "스포츠윤리센터의 인권 및 폭력예방 통합 과정 수강" },
+                    { step: 2, name: "KADA 도핑방지 수강", role: "학생 / 특수교사", desc: "한국도핑방지위원회 온라인 도핑방지 교육 수강" },
+                    { step: 3, name: "선수등록시스템 일괄 제출", role: "지도교사 / 특수교사", desc: "장애인체육회 선수등록시스템에 이수증 2부 파일 첨부 및 승인 요청" }
+                ],
+                mistakes: [
+                    { wrong: "별도 학교 인권교육을 또 따로 편성하느라 업무를 이중으로 함", correct: "체육회 선수등록 필수 2대 온라인 교육 이수증으로 학교 법정 의무교육 일괄 갈음" }
+                ],
+                faqs: [{ q: "학생 혼자 수강이 어려우면?", a: "가정 또는 학교에서 특수교사·보호자 조력 하에 함께 시청 및 수강 완료 가능합니다." }],
+                legalBasis: "학교체육 진흥법 제12조의3 및 국민체육진흥법 제15조의2",
+                fieldCheck: "대한장애인체육회 경기인등록시스템 첨부 여부 확인"
+            },
+            {
+                id: 11,
+                category: "인권 및 안전",
+                timing: "상시",
+                keyword: "인권및안전",
+                searchTags: ["학교운동부지도자", "지도자의무교육", "보수교육", "재교육", "직무연수"],
+                title: "학교운동부지도자 법적 의무교육 및 직무연수",
+                summary: "폭력·성폭력 예방교육(학기당 1회 1시간), 인권교육(학기당 1회 1시간), 도핑방지교육(연 1회), 지도자 보수교육(주기별 이수)",
+                detail: "학교운동부지도자는 관련 법령에 따라 매년 정기 의무교육 및 직무연수를 필수 이수해야 합니다. 1. (성)폭력 예방교육: 학기별 1회, 1시간 이상(학교폭력예방법 제15조). 2. 스포츠분야 인권교육: 학기별 1회, 1시간 이상(학교체육진흥법 제12조의3). 3. 도핑방지교육: 연 1회 이상(한국도핑방지위원회 KADA 온라인 교육센터). 4. 지도자 재교육 및 연수: 학교체육진흥법 및 체육단체 규정에 따른 주기별 직무연수 또는 보수교육(격년 6시간 이상 등)을 이수하여 지도자 자격을 유지해야 합니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 - Ⅲ. 학교운동부 및 학생선수 육성·지원 - 4. 학생선수 인권 보호 및 안전 강화 - 나. 학교운동부지도자 의무교육 및 직무연수 (p.50)",
+                checklist: ["지도자 법정 의무연수 이수증 수합", "학교장 결과 보고 및 교육청 제출"],
+                currentStep: 2,
+                steps: [
+                    { step: 1, name: "연수 일정 확인", role: "지도자", desc: "체육단체 및 교육청 연간 연수 일정 확인" },
+                    { step: 2, name: "연수 이수", role: "지도자", desc: "법정 필수 교육 및 보수교육 수강 완료" },
+                    { step: 3, name: "이수증 보고", role: "체육부장", desc: "모든 지도자 이수증 수합 후 관리대장 결재" }
+                ],
+                mistakes: [
+                    { wrong: "외부 코치라고 지도자 연수 관리를 소홀히 함", correct: "학교 지도자로 활동하는 모든 인원은 법정 교육 이수 필수" }
+                ],
+                faqs: [{ q: "미이수 시 제재는?", a: "체육회 지도자 등록이 취소되거나 경기장 벤치 착석이 제한됩니다." }],
+                legalBasis: "학교체육 진흥법 제12조의3",
+                fieldCheck: "도교육청 지도자 등록대장 대조"
+            },
+            {
+                id: 12,
+                category: "인권 및 안전",
+                timing: "대회 중",
+                keyword: "인권및안전",
+                searchTags: ["고충상담", "상담일지", "월1회", "누가기록", "면담", "학생상담", "대외비"],
+                title: "학생선수 정기 고충 상담 의무화 및 상담일지 작성",
+                summary: "월 1회 정기 상담 실시, 상담자 다양화(특수교사, 담임, 전문상담), 누가기록 보관",
+                detail: "장애학생선수의 신체적 건강상태, 훈련 부담감, 교우관계, 인권침해 등을 점검하고 해소하기 위해 매월 1회 정기 면담을 실시해야 합니다. 외부 운동부 지도자 외에도 특수교사, 담임교사, 전문상담교사 등 교내 상담자를 다양화하여 객관성을 확보하고, 상담일지를 작성하여 결재 후 누가 기록으로 대외비 보관합니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 - Ⅲ. 학교운동부 및 학생선수 육성·지원 - 4. 학생선수 인권 보호 및 안전 강화 - 다. 학생선수 정기 고충 상담 의무화 (p.51)",
+                checklist: ["월 1회 상담일정표 수립", "상담일지 대외비 보안 유지", "특이 징후 발견 시 즉시 보호조치"],
+                currentStep: 2,
+                steps: [
+                    { step: 1, name: "월별 상담 계획 수립", role: "특수교사 / 상담교사", desc: "학생선수별 월 1회 면담 일정 배정" },
+                    { step: 2, name: "1:1 심층 면담 실시", role: "특수교사", desc: "교우관계, 훈련 고충, 인권침해 여부 심층 면담" },
+                    { step: 3, name: "상담일지 작성 및 보안 결재", role: "학교장", desc: "상담일지 작성 후 개인정보 비공개(보안문서)로 결재 및 보관" }
+                ],
+                mistakes: [
+                    { wrong: "외부 체육회 코치에게만 상담을 일임함", correct: "인권 보호를 위해 반드시 학교 소속 교원(특수/담임/상담)이 주관하여 면담" }
+                ],
+                faqs: [{ q: "상담일지 공개 범위는?", a: "개인정보 보호를 위해 비공개(보안문서)로 등록 결재합니다." }],
+                legalBasis: "학교체육 진흥법 제12조(학생선수의 인권보호)",
+                fieldCheck: "상담일지 결재 시 개인정보 및 사안 내용 비공개 처리"
+            },
+            {
+                id: 13,
+                category: "인권 및 안전",
+                timing: "대회 전",
+                keyword: "인권및안전",
+                searchTags: ["폭력실태조사", "전수조사", "숙박훈련", "체크리스트", "신고기간", "폭력예방"],
+                title: "학생선수 폭력피해 실태조사 및 집중 신고기간 운영",
+                summary: "매년 4~6월 정례 실태조사 실시, 숙박형 훈련·대회 전후 예방교육 및 전수조사",
+                detail: "학생선수 대상 폭력 조기 감지를 위해 연 1회 이상 전수조사를 실시합니다(2026년은 4~6월 조사, 7월 후속조치). 또한 숙박을 수반하는 전지훈련이나 대회 참가 시에는 참가 전 (성)폭력 예방교육을 실시하여 체크리스트를 수합하고, 참가 직후 폭력피해 실태조사를 실시하여 내부결재 시 첨부 보고해야 합니다. 사안 발생 시 교육청 및 수사기관에 보고하고 피해자를 우선 분리·보호합니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 - Ⅲ. 학교운동부 및 학생선수 육성·지원 - 4. 학생선수 인권 보호 및 안전 강화 - 라. 학생선수 폭력피해 실태조사 및 집중 신고기간 운영 (p.52)",
+                checklist: ["숙박형 훈련 전 예방 체크리스트 징구", "귀교 후 전수 설문조사 실시", "사안 발생 시 원스톱 신고체계 숙지"],
+                currentStep: 3,
+                steps: [
+                    { step: 1, name: "참가 전 예방교육", role: "특수교사", desc: "선수 및 인솔자 대상 성폭력 등 예방수칙 교육" },
+                    { step: 2, name: "행사 중 안전 점검", role: "인솔교사", desc: "숙박 시설 내 학생 안전 및 특이사항 모니터링" },
+                    { step: 3, name: "귀교 직후 전수조사 및 결재", role: "학교장", desc: "실태조사지 수합 후 결과보고서 첨부 결재" }
+                ],
+                mistakes: [
+                    { wrong: "숙박 훈련을 다녀온 뒤 사후 실태조사를 생략함", correct: "숙박을 수반한 대회·훈련은 귀교 직후 실태조사 및 첨부 결재 의무화" }
+                ],
+                faqs: [{ q: "피해 호소 시 대처는?", a: "가해자와 즉각 분리하고 교육청 및 수사기관에 원스톱 신고합니다." }],
+                legalBasis: "학교폭력예방법 제15조 및 스포츠윤리센터 운영 지침",
+                fieldCheck: "실태조사 설문지 원본 3년간 보안 캐비닛 보관 의무"
+            },
+            {
+                id: 14,
+                category: "인권 및 안전",
+                timing: "상시",
+                keyword: "인권및안전",
+                searchTags: ["학교폭력", "가해학생", "출전정지", "체육특기자제외", "선수등록금지"],
+                title: "학교폭력 가해 학생선수 조치 및 자격 제한",
+                summary: "1~3호 조치 시 3~5개월 출전정지, 8호(전학) 12개월 출전정지, 9호(퇴학) 10년 선수등록 금지",
+                detail: "대한체육회 경기인 등록 규정에 따라 학폭 가해 판정을 받은 학생선수는 처분 수준에 따라 공식 경기 출전 및 선수 등록이 제한됩니다(1·2호 3개월, 3호 5개월, 4·5호 8개월, 6·7호 10개월, 8호 12개월). 심각한 성폭력이나 9호 처분은 5~10년간 선수등록이 금지됩니다. 또한 8호 이상 조치를 받은 학생은 상급학교(중·고교) 체육특기자 선발에서 전면 제외되며 징계 이력은 스포츠윤리센터 시스템에 10년간 연계·관리됩니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 - Ⅲ. 학교운동부 및 학생선수 육성·지원 - 4. 학생선수 인권 보호 및 안전 강화 - 마. 학교폭력 가해 학생선수 조치 및 자격 제한 (p.53)",
+                checklist: ["학폭위 처분 통보서 확인", "체육회 및 나이스 출전 제한 연계", "체육특기자 선발 자격 검증"],
+                currentStep: 1,
+                steps: [
+                    { step: 1, name: "학폭위 처분", role: "학폭위", desc: "심의 결과 1~9호 징계 확정" },
+                    { step: 2, name: "체육회 통보 및 출전정지", role: "학교", desc: "징계 기간 동안 공식 대회 출전 정지 적용" },
+                    { step: 3, name: "특기자 선발 제한", role: "상급학교", desc: "진학 시 특기자 선발 자격 영구 박탈 등 적용" }
+                ],
+                mistakes: [
+                    { wrong: "징계 기간 중 연습경기라며 무단 출전시킴", correct: "체육회 공인 일체의 경기 출전 전면 금지 규정 준수" }
+                ],
+                faqs: [{ q: "장애학생 간 갈등도 포함되나요?", a: "학교폭력예방법상 심의 결과에 따라 동일하게 적용됩니다." }],
+                legalBasis: "학교폭력예방법 제17조 및 대한체육회 경기인등록규정",
+                fieldCheck: "체육특기자 원서 접수 시 학교생활기록부 학폭 조치 이력 대조"
+            },
+            {
+                id: 15,
+                category: "안전 관리",
+                timing: "대회 전",
+                keyword: "안전관리",
+                searchTags: ["학교밖훈련장", "훈련장이용", "학교운영위원회", "학운위심의", "외부시설", "이동대책"],
+                title: "학교 밖 훈련장 이용 절차 및 학교운영위원회 심의",
+                summary: "학교 내 훈련장 부재 시 운영계획서에 이동 경로 명시 후 학운위 심의 통과 필수",
+                detail: "특수학교나 일반학교 내에 육상 트랙, 수영장, 볼링장 등 해당 종목 훈련장이 없어 학교 밖 체육시설을 이용해야 하는 경우, 학교운동부(선수) 연간 운영계획서에 인솔자 지정, 이동 수단, 안전 관리 대책을 명확히 기재하여 학교운영위원회의 사전 심의를 거쳐 학교장 승인 후 시행해야 합니다. 대중교통 이동 시에는 이동 경로 사전 점검을 실시해야 합니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 - Ⅳ. 안전한 학교체육 환경 조성 - 1. 학교체육 안전관리 - 가. 학교 밖 훈련장 이용 절차 및 학운위 심의 (p.56~57)",
+                checklist: ["학운위 심의 안건 제출", "외부 훈련장 안전점검표 작성", "이동 인솔자 지정"],
+                currentStep: 1,
+                steps: [
+                    { step: 1, name: "외부 훈련장 계획 수립", role: "특수교사", desc: "동선 및 안전대책이 포함된 연간 훈련계획 기안" },
+                    { step: 2, name: "학운위 심의·의결", role: "학운위", desc: "안전성 심의 후 가결" },
+                    { step: 3, name: "학교장 승인 및 이용", role: "학교장", desc: "최종 결재 득한 후 외부시설 이용 시작" }
+                ],
+                mistakes: [
+                    { wrong: "학운위 심의 없이 교사 임의로 외부 사설 볼링장 이용", correct: "반드시 학운위 사전 심의를 거쳐야 사고 발생 시 법적 보호 가능" }
+                ],
+                faqs: [{ q: "일회성 방문도 학운위 심의를 거치나요?", a: "정기적 훈련은 필수이며, 일회성은 학교장 체험학습 내부결재로 가능합니다." }],
+                legalBasis: "초·중등교육법 제32조(학교운영위원회 기능)",
+                fieldCheck: "외부 체육시설 배상책임보험 가입 증명서 첨부 확인"
+            },
+            {
+                id: 16,
+                category: "안전 관리",
+                timing: "대회 전",
+                keyword: "안전관리",
+                searchTags: ["차량이동", "안전대책", "동의서", "학교안전공제회", "교사차량", "안전운전", "휠체어이동"],
+                title: "차량 이동 안전대책 및 학생·학부모·인솔자 동의서",
+                summary: "교사·지도자 차량 이용 시 사전 동의서 징구, 휠체어 고정 확인, 사고 시 학교안전공제회 처리",
+                detail: "인솔 특수교사 또는 운동부지도자의 차량으로 장애학생을 수송할 때는 차량 보험 가입 여부 및 운전자 자격을 확인하고 학생·학부모 사전 동의서와 인솔자 안전운전 동의서를 받아두어야 합니다. 특히 휠체어 탑승 차량의 경우 리프트 및 안전고리 고정 상태를 이중 점검해야 합니다. 공무 수행 중 발생한 안전사고는 학교안전사고 예방 및 보상에 관한 법률에 따라 학교안전공제회 보상 절차를 적용합니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 - Ⅳ. 안전한 학교체육 환경 조성 - 1. 학교체육 안전관리 - 나. 차량 이동 안전대책 및 동의서 징구 (p.58)",
+                checklist: ["보호자 차량 탑승 동의서", "교사 종합보험(대인/대물 무한) 가입증명", "휠체어 안전고정 점검", "안전운전 서약서"],
+                currentStep: 2,
+                steps: [
+                    { step: 1, name: "이동 계획 및 수단 확정", role: "특수교사", desc: "대회장 또는 훈련장 이동 수단(특수차량, 개인차량 등) 확정" },
+                    { step: 2, name: "동의서 및 보험증빙 징구", role: "특수교사 / 보호자", desc: "보호자 동의서, 안전운전서약서, 자동차등록증 및 종합보험증권 사본 수합" },
+                    { step: 3, name: "내부결재 및 안전 운행", role: "학교장 / 인솔교사", desc: "이동계획 내부결재 득한 후, 당일 휠체어 결박 등 안전수칙 준수하여 운행" }
+                ],
+                mistakes: [
+                    { wrong: "보호자 동의서 없이 구두로만 허락받고 교사 개인차량에 태움", correct: "반드시 서면 동의서와 종합보험증권 사전 징구 후 출장 결재 득" }
+                ],
+                faqs: [{ q: "사고 발생 시 교사 자차 보험으로만 처리하나요?", a: "공무 출장 중 사고는 학교안전공제회 보상과 교원배상책임보험이 우선 지원됩니다." }],
+                legalBasis: "학교안전사고 예방 및 보상에 관한 법률 제11조",
+                fieldCheck: "인솔 교사 출장 결재 문서에 차량 이용 승인 문구 적시"
+            },
+            {
+                id: 17,
+                category: "체력평가",
+                timing: "상시",
+                keyword: "PAPS체력평가",
+                searchTags: ["PAPS", "학생건강체력평가", "체력측정", "5대요인", "12종목", "건강체력교실", "팝스"],
+                title: "학생건강체력평가제(PAPS) 운영 및 종목 기준",
+                summary: "초4(초3 선택)~고3 대상 매년 학년초 정시 측정(1학기 완료), 5개 요인 12개 종목",
+                detail: "학교보건법에 따라 초4부터 고3까지 필수 실시됩니다. 5대 체력 요인별로 학교 실정에 맞게 1종목씩 선택 측정합니다: 1. 심폐지구력(왕복오래달리기, 오래달리기-걷기, 스텝검사), 2. 근력/근지구력(악력, 윗몸말아올리기, 팔굽혀펴기), 3. 유연성(앉아윗몸앞으로굽히기, 종합유연성), 4. 체지방(BMI, 체지방량), 5. 순발력(50m 달리기, 제자리멀리뛰기). 측정 후 1~5등급으로 판정하며 4~5등급 학생을 위해 건강체력교실(e-paps, 메타스포츠School)을 연계 운영합니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 - Ⅰ. 체육교육과정 충실 - 2. 학생건강체력평가제(PAPS) 운영 - 가. PAPS 정시 측정 및 기준 (p.14~16)",
+                checklist: ["1학기 정시 측정 일정표 수립", "나이스 체육 PAPS 측정치 입력", "저체력자 건강체력교실 편성"],
+                currentStep: 1,
+                steps: [
+                    { step: 1, name: "학년초 측정 계획", role: "체육교사", desc: "PAPS 정시 측정 일정표 수립" },
+                    { step: 2, name: "5대 요인 종목 측정", role: "체육교사", desc: "학생 대상 5개 영역 신체능력검사 실시" },
+                    { step: 3, name: "나이스 입력 및 등급 산출", role: "체육교사", desc: "결과 나이스 업로드 후 1~5등급 판정" }
+                ],
+                mistakes: [
+                    { wrong: "특수교육대상학생이라고 무조건 PAPS를 미실시 처리함", correct: "일반 PAPS 또는 장애학생 맞춤형 PAPS-D를 선택 적용하여 측정 관리" }
+                ],
+                faqs: [{ q: "4~5등급 학생 조치는?", a: "방과후 또는 방학 중 건강체력교실을 개설하여 체력 향상 프로그램을 제공합니다." }],
+                legalBasis: "학교보건법 제2조의2 및 동법 시행규칙 제2조",
+                fieldCheck: "나이스 팝스 입력 기한 준수 (통상 7월 말)"
+            },
+            {
+                id: 18,
+                category: "체력평가",
+                timing: "상시",
+                keyword: "PAPS-D측정",
+                searchTags: ["PAPS-D", "장애학생PAPS", "A형B형C형D형E형F형", "장애인체력인증센터", "손에잡히는PAPSD", "체력평가"],
+                title: "장애학생 건강체력평가(PAPS-D) 운영 및 맞춤형 종목 매칭",
+                summary: "장애유형별 6개 검사유형(A~F형) 적용, 장애인체력인증센터 출장 측정 연계",
+                detail: "장애학생의 특성을 고려한 맞춤형 건강체력평가입니다. 6개 검사유형(A형: 시각, B형: 청각, C형: 지적·정서, D형: 지체 보행, E형: 지체 휠체어, F형: 지체 전동휠체어)에 따라 심폐기능, 근기능, 유연성, 순발력, 신체조성을 평가합니다. 충북청주 장애인체력인증센터와 연계하여 학교로 찾아가는 무료 출장 측정을 활용할 수 있으며, 측정 결과는 나이스(NEIS)와 체육 진로 매칭에 활용됩니다.",
+                docLocation: "2026 충북특수교육 운영계획 / 국립특수교육원 매뉴얼",
+                checklist: ["학생 장애유형별 A~F형 분류", "장애인체력인증센터 출장 측정 공문 신청", "나이스 PAPS-D 결과 입력"],
+                currentStep: 2,
+                steps: [
+                    { step: 1, name: "장애유형별 6개 유형(A~F형) 분류", role: "특수교사", desc: "학생의 장애 및 보행 상태에 따라 PAPS-D 검사 유형 지정" },
+                    { step: 2, name: "체력인증센터 출장 측정 연계", role: "장애인체력인증센터 / 특수교사", desc: "출장 측정팀 학교 방문을 통한 공인 장비 정밀 측정 및 운동처방 발급" },
+                    { step: 3, name: "맞춤 종목 매칭 및 나이스 반영", role: "특수교사", desc: "발급된 데이터를 나이스 체육 탭에 입력하고 맞춤형 방과후 체육 종목 연계" }
+                ],
+                mistakes: [
+                    { wrong: "장애학생에게 일반 PAPS 왕복오래달리기를 무리하게 강요함", correct: "PAPS-D 지침에 따라 휠체어 달리기, 페이서(PACER), 6분 걷기 등으로 대체 측정" }
+                ],
+                faqs: [{ q: "측정 장비가 학교에 없으면?", a: "충북청주 장애인체력인증센터에 공문 신청 시 전문 측정사가 전용 장비를 가지고 출장 방문합니다." }],
+                legalBasis: "장애인 등에 대한 특수교육법 제28조(특수교육 관련서비스 지원)",
+                fieldCheck: "국립특수교육원 『손에 잡히는 PAPS-D』 핸드북 참조"
+            },
+            {
+                id: 19,
+                category: "학교운동부 운영",
+                timing: "상시",
+                keyword: "운영",
+                searchTags: ["찬조금", "후원금", "청렴", "부정청탁"],
+                title: "학교운동부 후원회 결성 금지 및 불법 찬조금 근절",
+                summary: "학부모 후원금 갹출 전면 금지, 위반 시 지도자 해임 및 감사 처분",
+                detail: "학교운동부 후원회 결성 금지 및 불법 찬조금 근절에 관한 상세 지침입니다. 2026년 학교체육 활성화 기본계획 및 충북특수교육 운영계획 원문에 근거하여 규정에 부합하게 처리해야 합니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 / 충북특수교육 운영계획",
+                checklist: ["소속 학교 규정 확인", "학업성적관리위원회 및 내부결재 확인"],
+                currentStep: 1,
+                steps: standard5Steps,
+                mistakes: [
+                    { wrong: "절차 없이 임의 처리함", correct: "공식 지침과 결재선을 준수하여 적법 처리" }
+                ],
+                faqs: [{ q: "관련 서식은 어디서 받나요?", a: "교육청 업무포털 공문 게시판 또는 서식함에서 다운로드 가능합니다." }],
+                legalBasis: "학교체육 진흥법 및 충청북도교육청 학교체육 기본계획",
+                fieldCheck: "학교 실정에 맞는 전결 규정 및 지침 재확인"
+            },
+            {
+                id: 20,
+                category: "학교운동부 운영",
+                timing: "상시",
+                keyword: "운영",
+                searchTags: ["지도자계약", "임용", "무기계약", "근로기준법"],
+                title: "학교운동부지도자 임용 및 계약 관리 지침",
+                summary: "도교육청 교육공무직원 관리규정에 의거한 표준근로계약 준수",
+                detail: "학교운동부지도자 임용 및 계약 관리 지침에 관한 상세 지침입니다. 2026년 학교체육 활성화 기본계획 및 충북특수교육 운영계획 원문에 근거하여 규정에 부합하게 처리해야 합니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 / 충북특수교육 운영계획",
+                checklist: ["소속 학교 규정 확인", "학업성적관리위원회 및 내부결재 확인"],
+                currentStep: 1,
+                steps: standard5Steps,
+                mistakes: [
+                    { wrong: "절차 없이 임의 처리함", correct: "공식 지침과 결재선을 준수하여 적법 처리" }
+                ],
+                faqs: [{ q: "관련 서식은 어디서 받나요?", a: "교육청 업무포털 공문 게시판 또는 서식함에서 다운로드 가능합니다." }],
+                legalBasis: "학교체육 진흥법 및 충청북도교육청 학교체육 기본계획",
+                fieldCheck: "학교 실정에 맞는 전결 규정 및 지침 재확인"
+            },
+            {
+                id: 21,
+                category: "학교운동부 운영",
+                timing: "상시",
+                keyword: "등록",
+                searchTags: ["보조공학", "경기용휠체어", "훈련장비", "교구지원"],
+                title: "장애학생선수 종목별 훈련장비 및 특수 보조공학기기 지원",
+                summary: "경기용 휠체어, 보치아 홈통, 특수 신발 등 도교육청 지원 예산 신청",
+                detail: "장애학생선수 종목별 훈련장비 및 특수 보조공학기기 지원에 관한 상세 지침입니다. 2026년 학교체육 활성화 기본계획 및 충북특수교육 운영계획 원문에 근거하여 규정에 부합하게 처리해야 합니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 / 충북특수교육 운영계획",
+                checklist: ["소속 학교 규정 확인", "학업성적관리위원회 및 내부결재 확인"],
+                currentStep: 1,
+                steps: standard5Steps,
+                mistakes: [
+                    { wrong: "절차 없이 임의 처리함", correct: "공식 지침과 결재선을 준수하여 적법 처리" }
+                ],
+                faqs: [{ q: "관련 서식은 어디서 받나요?", a: "교육청 업무포털 공문 게시판 또는 서식함에서 다운로드 가능합니다." }],
+                legalBasis: "학교체육 진흥법 및 충청북도교육청 학교체육 기본계획",
+                fieldCheck: "학교 실정에 맞는 전결 규정 및 지침 재확인"
+            },
+            {
+                id: 22,
+                category: "대회 및 훈련 운영",
+                timing: "상시",
+                keyword: "5단계",
+                searchTags: ["장애학생체전", "참가신청", "엔트리", "출전명단"],
+                title: "전국장애학생체육대회 참가 신청 절차 및 엔트리 마감",
+                summary: "충북장애인체육회 1차 접수 → 도교육청 최종 승인 → 대한장애인체육회 등록",
+                detail: "전국장애학생체육대회 참가 신청 절차 및 엔트리 마감에 관한 상세 지침입니다. 2026년 학교체육 활성화 기본계획 및 충북특수교육 운영계획 원문에 근거하여 규정에 부합하게 처리해야 합니다.",
+                docLocation: "2026 학교체육 활성화 기본계획 / 충북특수교육 운영계획",
+                checklist: ["소속 학교 규정 확인", "학업성적관리위원회 및 내부결재 확인"],
+                currentStep: 1,
+                steps: standard5Steps,
+                mistakes: [
+                    { wrong: "절차 없이 임의 처리함", correct: "공식 지침과 결재선을 준수하여 적법 처리" }
+                ],
+                faqs: [{ q: "관련 서식은 어디서 받나요?", a: "교육청 업무포털 공문 게시판 또는 서식함에서 다운로드 가능합니다." }],
+                legalBasis: "학교체육 진흥법 및 충청북도교육청 학교체육 기본계획",
+                fieldCheck: "학교 실정에 맞는 전결 규정 및 지침 재확인"
+            }
+        ];
+
+        let currentSort = 'basic';
+        let currentKeyword = '전체';
+        let currentTokens = [];
+
+        window.onload = function() {
+            const today = new Date();
+            const dateStr = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
+            const dateSpan = document.getElementById('currentDateDisplay');
+            if (dateSpan) dateSpan.textContent = dateStr;
+
+            filterData();
+            loadRegionData('청주시', document.querySelector('#regionBtnGrid .region-btn.active'));
+            loadNationData('서울특별시', document.querySelector('#nationBtnGrid .region-btn.active'));
+            toggleTeamType('official');
+        };
+
+        function switchMainTab(tabId, btn) {
+            document.querySelectorAll('.main-nav .nav-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        function switchSubTab(parentTab, subId, btn) {
+            const parent = document.getElementById(`tab-${parentTab}`);
+            parent.querySelectorAll('.sub-nav-btn').forEach(b => b.classList.remove('active'));
+            parent.querySelectorAll('.sub-tab-content').forEach(c => c.classList.remove('active'));
+
+            document.getElementById(`sub-${parentTab}-${subId}`).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        function toggleTeamType(type) {
+            const btnOfficial = document.getElementById('btn-official');
+            const btnCompany = document.getElementById('btn-company');
+            const secOfficial = document.getElementById('section-official');
+            const secCompany = document.getElementById('section-company');
+
+            if(type === 'official') {
+                btnOfficial.classList.add('active');
+                btnCompany.classList.remove('active');
+                btnOfficial.style.background = 'var(--primary-color)';
+                btnOfficial.style.color = 'white';
+                btnCompany.style.background = 'white';
+                btnCompany.style.color = '#4a5568';
+                secOfficial.style.display = 'block';
+                secCompany.style.display = 'none';
+            } else {
+                btnCompany.classList.add('active');
+                btnOfficial.classList.remove('active');
+                btnCompany.style.background = 'var(--primary-color)';
+                btnCompany.style.color = 'white';
+                btnOfficial.style.background = 'white';
+                btnOfficial.style.color = '#4a5568';
+                secCompany.style.display = 'block';
+                secOfficial.style.display = 'none';
+                loadTeamRegionData('전체', document.querySelector('#teamRegionBtnGrid .region-btn.active'));
+            }
+        }
+
+        function loadRegionData(regionName, btn) {
+            document.querySelectorAll('#regionBtnGrid .region-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            const data = chungbukData[regionName];
+            const container = document.getElementById('regionDetailContainer');
+
+            container.innerHTML = `
+                <div class="detail-card">
+                    <h3 style="margin: 0 0 0.8rem 0; color: var(--primary-color);">🏢 ${regionName} 장애인 체육 인프라 상세 안내</h3>
+                    
+                    <div style="background:#f8fafc; padding:0.9rem; border-radius:6px; margin-bottom:1rem; border-left:4px solid var(--accent-color);">
+                        <div style="font-size:1.05rem; font-weight:700; color:#2d3748; margin-bottom:0.3rem;">
+                            1. 관할 체육회: ${data.office}
+                        </div>
+                        <div style="font-size:0.9rem; color:#4a5568;">📍 <strong>주소:</strong> ${data.address}</div>
+                        <div style="font-size:0.9rem; color:#4a5568;">📞 <strong>연락처:</strong> ${data.tel}</div>
+                    </div>
+
+                    <div style="background:#fff; border:1px solid var(--border-color); padding:1rem; border-radius:8px; margin-bottom:1.2rem;">
+                        <h4 style="margin:0 0 0.6rem 0; color:var(--primary-dark);">🎯 2. 체육회에서 하는 일 (주요 지원 사업)</h4>
+                        <ul style="margin:0; padding-left:1.2rem; font-size:0.92rem; color:#4a5568;">
+                            ${data.duties.map(d => `<li style="margin-bottom:0.4rem;">${d}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <h4 style="margin:1.2rem 0 0.6rem 0; color:#2d3748;">📊 3. 체력인증센터 현황 (장애인체력인증센터 / 국민체력100)</h4>
+                    <div style="display:flex; flex-direction:column; gap:0.6rem; margin-bottom:1.2rem;">
+                        ${data.fitnessCenters.map(c => `
+                            <div style="border:1px solid var(--border-color); padding:0.8rem; border-radius:6px; background:#fff;">
+                                <div style="display:flex; align-items:center; margin-bottom:0.3rem;">
+                                    <span class="infra-badge ${c.tag}">${c.tag === 'badge-disability-fit' ? '장애인 체력인증센터' : '국민체력100 인증센터'}</span>
+                                    <strong>${c.name}</strong>
+                                </div>
+                                <div style="font-size:0.88rem; color:#4a5568;">📍 위치: ${c.addr} \vert{} 📞 ${c.tel}</div>
+                                <div style="font-size:0.88rem; color:#2b6cb0; margin-top:0.2rem;">💡 ${c.note}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <h4 style="margin:1.2rem 0 0.6rem 0; color:#2d3748;">🏟️ 4. 활용 가능 주요 공공체육시설</h4>
+                    <div style="display:flex; flex-direction:column; gap:0.6rem;">
+                        ${data.facilities.map(f => `
+                            <div style="border:1px solid var(--border-color); padding:0.8rem; border-radius:6px; background:#fff;">
+                                <div style="display:flex; align-items:center; margin-bottom:0.3rem;">
+                                    <span class="infra-badge ${f.tag}">${f.tag === 'badge-bandabi' ? '반다비 체육센터' : '공공 체육센터'}</span>
+                                    <strong>${f.name}</strong>
+                                </div>
+                                <p style="margin:0; font-size:0.9rem; color:#4a5568;">${f.desc}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div style="background:#ebf8ff; padding:0.9rem; border-radius:6px; margin-top:1.2rem; border-left:4px solid var(--primary-color);">
+                        💡 <strong>특수교사 현장 실무 팁:</strong> ${data.schoolTip}
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadNationData(nationName, btn) {
+            document.querySelectorAll('#nationBtnGrid .region-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            const data = nationData[nationName];
+            const container = document.getElementById('nationDetailContainer');
+
+            container.innerHTML = `
+                <div class="detail-card">
+                    <h3 style="margin: 0 0 0.8rem 0; color: var(--primary-color);">🏢 ${nationName} 체육 인프라 상세</h3>
+                    
+                    <div style="background:#f8fafc; padding:0.9rem; border-radius:6px; margin-bottom:1rem; border-left:4px solid var(--accent-color);">
+                        <div style="font-size:1.05rem; font-weight:700; color:#2d3748; margin-bottom:0.3rem;">
+                            1. 관할 체육회: ${data.office}
+                        </div>
+                        <div style="font-size:0.9rem; color:#4a5568;">📍 <strong>주소:</strong> ${data.address}</div>
+                        <div style="font-size:0.9rem; color:#4a5568;">📞 <strong>연락처:</strong> ${data.tel}</div>
+                    </div>
+
+                    <div style="background:#fff; border:1px solid var(--border-color); padding:1rem; border-radius:8px; margin-bottom:1.2rem;">
+                        <h4 style="margin:0 0 0.6rem 0; color:var(--primary-dark);">🎯 2. 체육회에서 하는 일 (주요 시책 및 지원 업무)</h4>
+                        <ul style="margin:0; padding-left:1.2rem; font-size:0.92rem; color:#4a5568;">
+                            ${data.duties.map(d => `<li style="margin-bottom:0.4rem;">${d}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <h4 style="margin:1.2rem 0 0.6rem 0; color:#2d3748;">🏟️ 3. 활용 가능 주요 공공체육시설 및 체력인증센터</h4>
+                    <div style="display:flex; flex-direction:column; gap:0.6rem;">
+                        ${data.facilities.map(f => `
+                            <div style="border:1px solid var(--border-color); padding:0.8rem; border-radius:6px; background:#fff;">
+                                <div style="display:flex; align-items:center; margin-bottom:0.3rem;">
+                                    <span class="infra-badge ${f.tag}">${f.tag === 'badge-bandabi' ? '반다비 체육센터' : (f.tag === 'badge-disability-fit' ? '장애인 체력인증센터' : '거점 체육시설')}</span>
+                                    <strong>${f.name}</strong>
+                                </div>
+                                <p style="margin:0; font-size:0.9rem; color:#4a5568;">${f.desc}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadTeamRegionData(selectedRegion, btn) {
+            document.querySelectorAll('#teamRegionBtnGrid .region-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            const filtered = selectedRegion === '전체' 
+                ? companyTeams 
+                : companyTeams.filter(t => t.region === selectedRegion);
+
+            const container = document.getElementById('teamDetailContainer');
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div style="background:white; padding:2.5rem; text-align:center; border-radius:8px; color:#718096; border:1px dashed var(--border-color); margin-top:1rem;">
+                        해당 지역에는 현재 등록된 기업 직장운동경기부(취업선수) 정보가 없습니다.
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = `
+                <div style="margin-top: 1rem;">
+                    <table class="info-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;">기업명</th>
+                                <th style="width: 12%;">소재지</th>
+                                <th style="width: 15%;">고용 인원</th>
+                                <th style="width: 23%;">채용 종목</th>
+                                <th style="width: 25%;">특징 및 연계 안내</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${filtered.map(c => `
+                                <tr>
+                                    <td><strong>${c.name}</strong></td>
+                                    <td>${c.region}</td>
+                                    <td style="color:var(--primary-color); font-weight:700;">${c.count}</td>
+                                    <td>${c.sports}</td>
+                                    <td style="font-size:0.88rem; color:#4a5568;">${c.note}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        function highlightMatch(text, tokens) {
+            if (!text || !tokens || tokens.length === 0) return text;
+            
+            const sortedTokens = [...tokens].sort((a, b) => b.length - a.length);
+            let result = text;
+
+            sortedTokens.forEach(t => {
+                if (t.trim().length > 0) {
+                    const regex = new RegExp(`(${t.replace(/[.*+?^\${}()|[\\]\\\\]/g, '\\$&')})`, 'gi');
+                    result = result.replace(regex, `<span class="search-highlight">$1</span>`);
+                }
+            });
+            return result;
+        }
+
+        function selectKeyword(keyword) {
+            currentKeyword = keyword;
+            document.querySelectorAll('#keywordTags .tag-btn').forEach(btn => {
+                if (btn.textContent.includes(keyword) || (keyword === '전체' && btn.textContent === '전체')) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            filterData();
+        }
+
+        function setSort(type) {
+            currentSort = type;
+            document.getElementById('sortBasic').classList.toggle('active', type === 'basic');
+            document.getElementById('sortAlpha').classList.toggle('active', type === 'alpha');
+            filterData();
+        }
+
+        function filterData() {
+            const rawQuery = document.getElementById('searchInput').value.trim().toLowerCase();
+            const selectedCategory = document.getElementById('categorySelect').value;
+            const selectedTiming = document.getElementById('timingSelect').value;
+
+            currentTokens = rawQuery ? rawQuery.split(/\s+/).filter(t => t.length > 0) : [];
+            const rawQueryNoSpace = rawQuery.replace(/\s+/g, '');
+
+            let filtered = database.filter(item => {
+                const matchKeyword = currentKeyword === '전체' || item.keyword === currentKeyword || (item.searchTags && item.searchTags.some(t => t.includes(currentKeyword)));
+                const matchCategory = selectedCategory === '전체' || item.category === selectedCategory;
+                const matchTiming = selectedTiming === '전체' || item.timing === selectedTiming;
+
+                if (!matchKeyword || !matchCategory || !matchTiming) return false;
+                if (currentTokens.length === 0) return true;
+
+                const tagPool = item.searchTags ? item.searchTags.join(' ') : '';
+                const checklistPool = item.checklist ? item.checklist.join(' ') : '';
+                const mistakePool = item.mistakes ? item.mistakes.map(m => m.wrong + ' ' + m.correct).join(' ') : '';
+
+                const fullText = (
+                    item.title + ' ' + 
+                    item.summary + ' ' + 
+                    item.detail + ' ' + 
+                    item.category + ' ' + 
+                    tagPool + ' ' + 
+                    checklistPool + ' ' + 
+                    mistakePool
+                ).toLowerCase();
+
+                const fullTextNoSpace = fullText.replace(/\s+/g, '');
+
+                if (fullTextNoSpace.includes(rawQueryNoSpace)) return true;
+
+                const allTokensMatch = currentTokens.every(token => {
+                    const tokenNoSpace = token.replace(/\s+/g, '');
+                    return fullText.includes(token) || fullTextNoSpace.includes(tokenNoSpace);
+                });
+
+                return allTokensMatch;
+            });
+
+            if (currentSort === 'alpha') {
+                filtered.sort((a, b) => a.title.localeCompare(b.title));
+            } else {
+                filtered.sort((a, b) => a.id - b.id);
+            }
+
+            renderResults(filtered);
+        }
+
+        function renderResults(data) {
+            const container = document.getElementById('resultsContainer');
+            document.getElementById('resultsCount').textContent = `검색 결과: ${data.length}건`;
+            
+            if (data.length === 0) {
+                container.innerHTML = `
+                    <div style="background:white; padding:3rem 1rem; text-align:center; border-radius:10px; color:#718096; border:1px dashed var(--border-color);">
+                        🔍 입력하신 검색어와 일치하는 규정 항목이 없습니다.<br>
+                        '학생선수', '등록', '출결', '최저학력', 'PAPS', '도핑' 등으로 검색해 보세요.
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = data.map((item, index) => {
+                const highlightedTitle = highlightMatch(item.title, currentTokens);
+                const highlightedSummary = highlightMatch(item.summary, currentTokens);
+                const highlightedDetail = highlightMatch(item.detail, currentTokens);
+
+                const currentStepNumber = item.currentStep || 1;
+                const totalSteps = item.steps.length;
+
+                return `
+                <div class="card" id="card-${item.id}">
+                    <div class="card-header" onclick="toggleCard(${item.id})">
+                        <div class="card-title-area">
+                            <div class="badge-wrap">
+                                <span class="badge-category">${item.category}</span>
+                                <span class="badge-timing">시점: ${item.timing}</span>
+                                <span style="font-size:0.78rem; background:#feebc8; color:#c05621; font-weight:bold; padding:0.2rem 0.5rem; border-radius:4px;">
+                                    📌 총 ${totalSteps}단계 중 ${currentStepNumber}단계 관련
+                                </span>
+                            </div>
+                            <h3 class="card-title">${index + 1}. ${highlightedTitle}</h3>
+                            <p class="card-summary">💡 <strong>핵심 요약:</strong> ${highlightedSummary}</p>
+                        </div>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="section-box">
+                            <h4>📋 상세 규정 내용 및 확인 경로</h4>
+                            <p>${highlightedDetail}</p>
+                            <p style="font-size:0.9rem; color:#4a5568; margin-top:0.6rem;">
+                                📍 <strong>지침 확인 경로:</strong> ${highlightMatch(item.docLocation, currentTokens)}
+                            </p>
+                        </div>
+
+                        <div class="section-box" style="border-left-color: var(--accent-color);">
+                            <h4 style="color: var(--accent-color);">🔍 수행 전 먼저 확인할 것 (사전 점검)</h4>
+                            <ul>
+                                ${item.checklist.map(chk => `<li>${highlightMatch(chk, currentTokens)}</li>`).join('')}
+                            </ul>
+                        </div>
+
+                        <div class="section-box" style="border-left-color: #3182ce;">
+                            <h4 style="color: #3182ce;">📊 업무 흐름도 및 담당 주체 (총 ${totalSteps}단계 프로세스)</h4>
+                            <div class="flow-meta">
+                                <span>총 단계: <strong>총 ${totalSteps}단계</strong></span>
+                                <span>현재 검색 항목 위치: <strong style="color:#e53e3e;">제 ${currentStepNumber}단계</strong></span>
+                                <span>현재 수행 담당: <strong>${item.steps[currentStepNumber - 1].role}</strong></span>
+                            </div>
+                            
+                            <div class="view-mode-btns">
+                                <button onclick="switchFlowView(${item.id}, 'v', event)" class="active" id="btn-v-${item.id}">세로 흐름도</button>
+                                <button onclick="switchFlowView(${item.id}, 'h', event)" id="btn-h-${item.id}">가로 흐름도</button>
+                            </div>
+
+                            <div class="flow-container" id="flow-container-${item.id}">
+                                ${item.steps.map((st, idx) => {
+                                    const isCurrent = (st.step === currentStepNumber);
+                                    return `
+                                    <div class="flow-step-node ${isCurrent ? 'current-step' : ''}" id="step-node-${item.id}-${st.step}">
+                                        ${isCurrent ? `<span class="current-step-badge">📍 현재 검색/확인 단계</span>` : ''}
+                                        <div class="step-header">
+                                            <span class="step-num-title">${st.step}단계. ${highlightMatch(st.name, currentTokens)}</span>
+                                            <span class="step-role-badge">담당: ${st.role}</span>
+                                        </div>
+                                        <p class="step-desc">${highlightMatch(st.desc, currentTokens)}</p>
+                                        <label class="step-check-label">
+                                            <input type="checkbox" id="chk-${item.id}-${st.step}" onchange="toggleStepCheck(${item.id}, ${st.step},${totalSteps})">
+                                            <span>${st.step}단계 수행 완료 (체크)</span>
+                                        </label>
+                                    </div>
+                                    `;
+                                }).join('')}
+                            </div>
+
+                            <div class="next-action-box" id="next-action-${item.id}">
+                                💡 현재 <strong>제 ${currentStepNumber}단계 [${item.steps[currentStepNumber - 1].name}]</strong>를 확인 중입니다. 완료 시 체크박스를 누르면 취소선과 함께 다음 단계로 안내됩니다.
+                            </div>
+                        </div>
+
+                        <div class="section-box" style="border-left-color: var(--warning-color);">
+                            <h4 style="color: var(--warning-color);">📜 과정별 깊이 보기 (법령 근거 및 지침 원문)</h4>
+                            <p style="background: white; padding: 0.8rem; border-radius: 6px; border: 1px solid var(--border-color); font-size: 0.91rem;">
+                                <strong>법적 근거:</strong> ${highlightMatch(item.legalBasis, currentTokens)}
+                            </p>
+                        </div>
+
+                        <div class="section-box" style="border-left-color: var(--danger-color);">
+                            <h4 style="color: var(--danger-color);">⚠️ 한 눈에 보는 표 (현장에서 자주 생기는 실수 & 하지 말 것)</h4>
+                            <table class="table-mistake">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 50%;">❌ 현장에서 자주 생기는 실수 (하지 말 것)</th>
+                                        <th style="width: 50%;">⭕ 규정에 부합하는 올바른 수행 방법</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${item.mistakes.map(m => `
+                                        <tr>
+                                            <td>${highlightMatch(m.wrong, currentTokens)}</td>
+                                            <td style="color:#2f855a; font-weight:600;">${highlightMatch(m.correct, currentTokens)}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="section-box" style="border-left-color: var(--purple-color);">
+                            <h4 style="color: var(--purple-color);">❓ 자주 묻는 질문 (현장 FAQ)</h4>
+                            ${item.faqs.map(faq => `
+                                <div class="faq-item">
+                                    <div class="faq-q" onclick="toggleFaq(this)">
+                                        <span>Q. ${highlightMatch(faq.q, currentTokens)}</span>
+                                        <span style="font-size:0.8rem; color:#a0aec0;">▼</span>
+                                    </div>
+                                    <div class="faq-a">A. ${highlightMatch(faq.a, currentTokens)}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <div class="section-box" style="border-left-color: var(--success-color);">
+                            <h4 style="color: var(--success-color);">🏫 현장에서 확인할 것 (학교 학업성적관리규정·교육청 지침 대조)</h4>
+                            <p style="font-size: 0.92rem; margin: 0;">${highlightMatch(item.fieldCheck, currentTokens)}</p>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                            <button class="download-btn" onclick="alert('[다운로드] ${item.title} 관련 서식 양식을 내려받습니다.');">
+                                📥 원문 양식 내려받기
+                            </button>
+                            <span style="font-size: 0.88rem; color: #718096;">
+                                🔗 <strong>함께 볼 항목:</strong> 충북특수교육 운영계획 | 학교 학업성적관리규정
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        function toggleCard(id) {
+            const card = document.getElementById(`card-${id}`);
+            card.classList.toggle('open');
+        }
+
+        function toggleFaq(el) {
+            const ans = el.nextElementSibling;
+            const arrow = el.querySelector('span:last-child');
+            if (ans.style.display === 'block') {
+                ans.style.display = 'none';
+                arrow.textContent = '▼';
+            } else {
+                ans.style.display = 'block';
+                arrow.textContent = '▲';
+            }
+        }
+
+        function switchFlowView(itemId, mode, event) {
+            event.stopPropagation();
+            const container = document.getElementById(`flow-container-${itemId}`);
+            const btnV = document.getElementById(`btn-v-${itemId}`);
+            const btnH = document.getElementById(`btn-h-${itemId}`);
+
+            if (mode === 'h') {
+                container.classList.add('horizontal');
+                btnH.classList.add('active');
+                btnV.classList.remove('active');
+            } else {
+                container.classList.remove('horizontal');
+                btnV.classList.add('active');
+                btnH.classList.remove('active');
+            }
+        }
+
+        function toggleStepCheck(itemId, stepNum, totalSteps) {
+            const node = document.getElementById(`step-node-${itemId}-${stepNum}`);
+            const chk = document.getElementById(`chk-${itemId}-${stepNum}`);
+            const actionBox = document.getElementById(`next-action-${itemId}`);
+            const item = database.find(d => d.id === itemId);
+
+            if (chk.checked) {
+                node.classList.add('completed');
+            } else {
+                node.classList.remove('completed');
+            }
+
+            let nextStep = null;
+            for (let s = 1; s <= totalSteps; s++) {
+                const c = document.getElementById(`chk-${itemId}-${s}`);
+                if (c && !c.checked) {
+                    nextStep = s;
+                    break;
+                }
+            }
+
+            if (nextStep) {
+                const nextStepObj = item.steps[nextStep - 1];
+                actionBox.innerHTML = `👉 <strong>다음 단계 진행 안내:</strong> [${nextStep}단계: ${nextStepObj.name}]을 수행하세요. (담당: <span style="color:#2b6cb0;">${nextStepObj.role}</span>)`;
+                actionBox.style.background = "#e6fffa";
+                actionBox.style.borderColor = "var(--accent-color)";
+            } else {
+                actionBox.innerHTML = `🎉 <strong>축하합니다!</strong> 모든 ${totalSteps}단계 업무 절차가 완벽히 수행되었습니다.`;
+                actionBox.style.background = "#feebc8";
+                actionBox.style.borderColor = "var(--warning-color)";
+            }
+        }
+    </script>
+</body>
+</html>
